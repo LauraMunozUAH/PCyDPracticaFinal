@@ -1,56 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="100.0" fitWidth="207.0" layoutX="25.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../imagenes/fondoVerde.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="87.0" fitWidth="207.0" layoutX="25.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../imagenes/fondoVerde.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="95.0" fitWidth="206.0" layoutX="25.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../imagenes/fondoVerde.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="102.0" layoutY="84.0" text="Descanso" />
-      <Label layoutX="104.0" layoutY="190.0" prefHeight="17.0" prefWidth="50.0" text="Comedor" />
-      <Label layoutX="95.0" layoutY="285.0" prefHeight="17.0" prefWidth="70.0" text="Zona común" />
-      <TextField fx:id="ListaDescanso" layoutX="34.0" layoutY="113.0" prefHeight="34.0" prefWidth="187.0" promptText="ListaDescanso" />
-      <TextField fx:id="ListaComedor" layoutX="36.0" layoutY="216.0" prefHeight="34.0" prefWidth="187.0" promptText="ListaComedor" />
-      <TextField fx:id="ListaZonaComun" layoutX="34.0" layoutY="315.0" prefHeight="34.0" prefWidth="187.0" promptText="ListaZonaComun" />
-      <ImageView fitHeight="79.0" fitWidth="207.0" layoutX="243.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../imagenes/fondoAmarillo.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="79.0" fitWidth="207.0" layoutX="243.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../imagenes/fondoAmarillo.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="79.0" fitWidth="207.0" layoutX="243.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../imagenes/fondoAmarillo.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="79.0" fitWidth="207.0" layoutX="243.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../imagenes/fondoAmarillo.png" />
-         </image>
-      </ImageView>
-      <TextField fx:id="EntradaTunel1" layoutX="247.0" layoutY="86.0" prefHeight="56.0" prefWidth="70.0" promptText="EntradaTunel1" />
-      <TextField fx:id="SalidaTunel1" layoutX="377.0" layoutY="85.0" prefHeight="56.0" prefWidth="70.0" promptText="SalidaTunel1" />
-      <TextField fx:id="Tunel1" layoutX="317.0" layoutY="101.0" prefHeight="25.0" prefWidth="60.0" promptText="Tunel1" />
+      <Pane layoutX="27.0" layoutY="53.0" prefHeight="87.0" prefWidth="207.0" style="-fx-background-color: #C6784B;">
+         <children>
+            <Label layoutX="72.0" layoutY="4.0" text="Descanso" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="ListaDescanso" layoutX="10.0" layoutY="33.0" prefHeight="34.0" prefWidth="187.0" promptText="ListaDescanso" />
+         </children>
+      </Pane>
+      <Pane layoutX="27.0" layoutY="156.0" prefHeight="87.0" prefWidth="207.0" style="-fx-background-color: #C6784B;">
+         <children>
+            <TextField fx:id="ListaComedor" layoutX="10.0" layoutY="36.0" prefHeight="34.0" prefWidth="187.0" promptText="ListaComedor" />
+            <Label layoutX="72.0" layoutY="1.0" prefHeight="25.0" prefWidth="63.0" text="Comedor" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="27.0" layoutY="259.0" prefHeight="87.0" prefWidth="207.0" style="-fx-background-color: #C6784B;">
+         <children>
+            <TextField fx:id="ListaZonaComun" layoutX="10.0" layoutY="33.0" prefHeight="34.0" prefWidth="187.0" promptText="ListaZonaComun" />
+            <Label layoutX="61.0" layoutY="1.0" prefHeight="25.0" prefWidth="85.0" text="Zona común" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="247.0" layoutY="53.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: FFDB58;">
+         <children>
+            <TextField fx:id="SalidaTunel1" layoutX="134.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="SalidaTunel1" />
+            <TextField fx:id="EntradaTunel1" layoutX="4.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="EntradaTunel1" />
+            <TextField fx:id="Tunel1" layoutX="74.0" layoutY="23.0" prefHeight="25.0" prefWidth="60.0" promptText="Tunel1" />
+         </children>
+      </Pane>
+      <Pane layoutX="247.0" layoutY="127.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: FFDB58;">
+         <children>
+            <TextField fx:id="SalidaTunel2" layoutX="134.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="SalidaTunel2" />
+            <TextField fx:id="EntradaTunel2" layoutX="4.0" layoutY="10.0" prefHeight="56.0" prefWidth="70.0" promptText="EntradaTunel2" />
+            <TextField fx:id="Tunel2" layoutX="74.0" layoutY="23.0" prefHeight="25.0" prefWidth="60.0" promptText="Tunel2" />
+         </children>
+      </Pane>
+      <Pane layoutX="247.0" layoutY="201.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: FFDB58;">
+         <children>
+            <TextField fx:id="SalidaTunel3" layoutX="134.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="SalidaTunel3" />
+            <TextField fx:id="EntradaTunel3" layoutX="4.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="EntradaTunel3" />
+            <TextField fx:id="Tunel3" layoutX="74.0" layoutY="23.0" prefHeight="25.0" prefWidth="60.0" promptText="Tunel3" />
+         </children>
+      </Pane>
+      <Pane layoutX="247.0" layoutY="276.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: FFDB58;">
+         <children>
+            <TextField fx:id="SalidaTunel31" layoutX="134.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="SalidaTunel3" />
+            <TextField fx:id="EntradaTunel31" layoutX="4.0" layoutY="10.0" prefHeight="56.0" prefWidth="70.0" promptText="EntradaTunel3" />
+            <TextField fx:id="Tunel31" layoutX="74.0" layoutY="23.0" prefHeight="25.0" prefWidth="60.0" promptText="Tunel3" />
+         </children>
+      </Pane>
+      <Pane layoutX="466.0" layoutY="53.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: #9D432C;">
+         <children>
+            <TextField fx:id="ZombisZona1" layoutX="114.0" layoutY="7.0" prefHeight="56.0" prefWidth="85.0" promptText="ZombisZona1" />
+            <TextField fx:id="HumanosZona1" layoutX="7.0" layoutY="7.0" prefHeight="56.0" prefWidth="92.0" promptText="HumanosZona1" />
+         </children>
+      </Pane>
+      <Pane layoutX="466.0" layoutY="127.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: #9D432C;">
+         <children>
+            <TextField fx:id="ZombisZona2" layoutX="114.0" layoutY="7.0" prefHeight="56.0" prefWidth="85.0" promptText="ZombisZona2" />
+            <TextField fx:id="HumanosZona2" layoutX="7.0" layoutY="7.0" prefHeight="56.0" prefWidth="92.0" promptText="HumanosZona2" />
+         </children>
+      </Pane>
+      <Pane layoutX="466.0" layoutY="201.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: #9D432C;">
+         <children>
+            <TextField fx:id="ZombisZona3" layoutX="114.0" layoutY="7.0" prefHeight="56.0" prefWidth="85.0" promptText="ZombisZona3" />
+            <TextField fx:id="HumanosZona3" layoutX="7.0" layoutY="7.0" prefHeight="56.0" prefWidth="92.0" promptText="HumanosZona3" />
+         </children>
+      </Pane>
+      <Pane layoutX="466.0" layoutY="276.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: #9D432C;">
+         <children>
+            <TextField fx:id="ZombisZona4" layoutX="114.0" layoutY="7.0" prefHeight="56.0" prefWidth="85.0" promptText="ZombisZona4" />
+            <TextField fx:id="HumanosZona4" layoutX="7.0" layoutY="7.0" prefHeight="56.0" prefWidth="92.0" promptText="HumanosZona4" />
+         </children>
+      </Pane>
+      <Label layoutX="80.0" layoutY="14.0" prefHeight="28.0" prefWidth="101.0" text="REFUGIO">
+         <font>
+            <Font name="Arial Black" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="300.0" layoutY="14.0" prefHeight="28.0" prefWidth="101.0" text="TÚNELES">
+         <font>
+            <Font name="Arial Black" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="476.0" layoutY="14.0" prefHeight="28.0" prefWidth="187.0" text="ZONA DE RIESGO" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Black" size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="Pausar" layoutX="471.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3B83BD;" text="PAUSAR" textFill="WHITE" />
+      <Button fx:id="Jugar" layoutX="365.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3B83BD;" text="JUGAR" textFill="WHITE" />
+      <Button fx:id="Terminar" layoutX="577.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3B83BD;" text="TERMINAR" textFill="WHITE" />
    </children>
 </Pane>
