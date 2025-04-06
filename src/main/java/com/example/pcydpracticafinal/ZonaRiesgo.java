@@ -14,5 +14,15 @@ public class ZonaRiesgo {
         zombis.add(zombi);
     }
 
+    public List<Humano> getListaHumanos() {
+        return humanos;
+    }
 
+    public void convertirHaZ(Humano humano) {
+        String IDHumano = humano.getID();
+        String IDZombi = "Z" + IDHumano.substring(1);
+        humano.interrupt();
+        Zombi zombi = new Zombi(IDZombi, this);
+
+    }
 }
