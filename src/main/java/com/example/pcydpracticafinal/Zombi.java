@@ -4,22 +4,23 @@ import java.util.List;
 
 public class Zombi extends Thread {
     private final String id;
-    private final ZonaRiesgo[] zonasRiesgo;
-    private boolean marcado = false;
+    private final ZonaRiesgo zonasRiesgo;
     private int muertes = 0;
+    private int area;
 
-    public Zombi(String id, ZonaRiesgo[] zonasRiesgo) {
+    public Zombi(String id, ZonaRiesgo zonasRiesgo, int area) {
         this.id = id;
         this.zonasRiesgo = zonasRiesgo;
+        this.area = area;
     }
 
     @Override
     public void run() {
         try {
             while (true) {
-                int zonaRacc =  (int) (1 + Math.random() * 3);
-                zonasRiesgo[zonaRacc].entrarZonaRZombi(this);
-                List<Humano> humanos = zonasRiesgo[zonaRacc].getListaHumanos();
+                SubAreaInsegura areaSeleccionada = zonasRiesgo.getSubAreas().get(area);
+                areaSeleccionada.entrarZonaRZombi(this);
+                List<Humano> humanos = areaSeleccionada.getListaHumanos();
                 if (humanos.size() != 0) {
                     int posicionAtacado = (int) (Math.random() * (humanos.size() - 1));
                     Humano humanoAtacado = humanos.get(posicionAtacado);
@@ -28,12 +29,14 @@ public class Zombi extends Thread {
                     sleep((int) (500 + Math.random() * 1000));
 
                     if (!sobrevive) {
-                        zonasRiesgo[zonaRacc].convertirHaZ(humanoAtacado);
+                        zonasRiesgo.convertirHaZ(humanoAtacado,area);
                     }
 
                 }
                 System.out.println("Zombi " + id + " está buscando comida.");
                 sleep((int) (2000 + Math.random() * 1000));
+                areaSeleccionada.salirZonaRZombi(this);
+                int area =  (int) (1 + Math.random() * 3);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

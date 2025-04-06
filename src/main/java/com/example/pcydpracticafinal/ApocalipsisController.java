@@ -108,6 +108,28 @@ public class ApocalipsisController {
 
     }
 
+    public static void main(String args[]) {
+        Refugio refugio = new Refugio();
+        ZonaRiesgo zonaRiesgo = new ZonaRiesgo();
+        zonaRiesgo.getSubAreas().get(0).setTextField(HumanosZona1, ZonaZombis1);
+        Tunel[] tuneles = { new Tunel(0), new Tunel(1), new Tunel(2), new Tunel(3) };
+
+        int area =  (int) (1 + Math.random() * 3);
+        Zombi pacienteCero = new Zombi("Z0000", zonaRiesgo, area);
+        pacienteCero.start();
+
+        for (int i = 1; i <= 10000; i++) {
+            String id = String.format("H%04d", i);
+            Humano h = new Humano(id, refugio, zonaRiesgo, tuneles);
+            h.start();
+            try {
+                Thread.sleep(500 + (int) Math.random() *1500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void setStage(Stage s){
         this.stage = s;
     }

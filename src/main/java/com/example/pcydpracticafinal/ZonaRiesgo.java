@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ZonaRiesgo {
-    private final List<Humano> humanos = new ArrayList<>();
-    private final List<Zombi> zombis = new ArrayList<>();
 
-    public synchronized void entrarZonaRHumano(Humano humano) {
-        humanos.add(humano);
-    }
-    public synchronized void entrarZonaRZombi(Zombi zombi) {
-        zombis.add(zombi);
-    }
+    private final List<SubAreaInsegura> subAreas = new ArrayList<>();
 
-    public List<Humano> getListaHumanos() {
-        return humanos;
+    public ZonaRiesgo(){
+        for (int i=0; i < 4; i++) {
+            subAreas.add(new SubAreaInsegura());
+        }
     }
 
-    public void convertirHaZ(Humano humano) {
+    public List<SubAreaInsegura> getSubAreas() {
+        return subAreas;
+    }
+
+    public void convertirHaZ(Humano humano, int area) {
         String IDHumano = humano.getID();
+
         String IDZombi = "Z" + IDHumano.substring(1);
         humano.interrupt();
-        Zombi zombi = new Zombi(IDZombi, this);
-
+        Zombi zombi = new Zombi(IDZombi, this, area);
+        subAreas.get(area).entrarZonaRZombi(zombi);
     }
 }
