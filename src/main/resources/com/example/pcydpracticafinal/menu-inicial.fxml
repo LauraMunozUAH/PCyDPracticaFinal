@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="294.0" prefWidth="373.0" spacing="20.0" style="-fx-background-color: #f28ff2;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.uah.metod.practica4ines.MainController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <Label text="Bienvenido al Juego de la Vida!" textFill="#7e0ba1">
+        <font>
+            <Font name="Arial Black" size="18.0" />
+        </font></Label>
+    <Button onAction="#onNuevaPartidaParametrosBotonClick" style="-fx-background-color: #7e0ba1;" text="Nueva Partida" textFill="#f28ff2" />
+</VBox>

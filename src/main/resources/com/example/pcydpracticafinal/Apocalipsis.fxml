@@ -3,10 +3,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pcydpracticafinal.ApocalipsisController">
    <children>
       <Pane layoutX="27.0" layoutY="53.0" prefHeight="87.0" prefWidth="207.0" style="-fx-background-color: #C6784B;">
          <children>
@@ -18,14 +19,10 @@
             <TextField fx:id="ListaDescanso" layoutX="10.0" layoutY="33.0" prefHeight="34.0" prefWidth="187.0" promptText="ListaDescanso" />
          </children>
       </Pane>
-      <Pane layoutX="27.0" layoutY="156.0" prefHeight="87.0" prefWidth="207.0" style="-fx-background-color: #C6784B;">
+      <Pane layoutX="466.0" layoutY="276.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: #9D432C;">
          <children>
-            <TextField fx:id="ListaComedor" layoutX="10.0" layoutY="36.0" prefHeight="34.0" prefWidth="187.0" promptText="ListaComedor" />
-            <Label layoutX="72.0" layoutY="1.0" prefHeight="25.0" prefWidth="63.0" text="Comedor" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
+            <TextField fx:id="ZombisZona4" layoutX="114.0" layoutY="7.0" prefHeight="56.0" prefWidth="85.0" promptText="ZombisZona4" />
+            <TextField fx:id="HumanosZona4" layoutX="7.0" layoutY="7.0" prefHeight="56.0" prefWidth="92.0" promptText="HumanosZona4" />
          </children>
       </Pane>
       <Pane layoutX="27.0" layoutY="259.0" prefHeight="87.0" prefWidth="207.0" style="-fx-background-color: #C6784B;">
@@ -38,32 +35,11 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="247.0" layoutY="53.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: FFDB58;">
-         <children>
-            <TextField fx:id="SalidaTunel1" layoutX="134.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="SalidaTunel1" />
-            <TextField fx:id="EntradaTunel1" layoutX="4.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="EntradaTunel1" />
-            <TextField fx:id="Tunel1" layoutX="74.0" layoutY="23.0" prefHeight="25.0" prefWidth="60.0" promptText="Tunel1" />
-         </children>
-      </Pane>
-      <Pane layoutX="247.0" layoutY="127.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: FFDB58;">
-         <children>
-            <TextField fx:id="SalidaTunel2" layoutX="134.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="SalidaTunel2" />
-            <TextField fx:id="EntradaTunel2" layoutX="4.0" layoutY="10.0" prefHeight="56.0" prefWidth="70.0" promptText="EntradaTunel2" />
-            <TextField fx:id="Tunel2" layoutX="74.0" layoutY="23.0" prefHeight="25.0" prefWidth="60.0" promptText="Tunel2" />
-         </children>
-      </Pane>
-      <Pane layoutX="247.0" layoutY="201.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: FFDB58;">
-         <children>
-            <TextField fx:id="SalidaTunel3" layoutX="134.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="SalidaTunel3" />
-            <TextField fx:id="EntradaTunel3" layoutX="4.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="EntradaTunel3" />
-            <TextField fx:id="Tunel3" layoutX="74.0" layoutY="23.0" prefHeight="25.0" prefWidth="60.0" promptText="Tunel3" />
-         </children>
-      </Pane>
       <Pane layoutX="247.0" layoutY="276.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: FFDB58;">
          <children>
-            <TextField fx:id="SalidaTunel31" layoutX="134.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="SalidaTunel3" />
-            <TextField fx:id="EntradaTunel31" layoutX="4.0" layoutY="10.0" prefHeight="56.0" prefWidth="70.0" promptText="EntradaTunel3" />
-            <TextField fx:id="Tunel31" layoutX="74.0" layoutY="23.0" prefHeight="25.0" prefWidth="60.0" promptText="Tunel3" />
+            <TextField fx:id="SalidaTunel4" layoutX="134.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="SalidaTunel4" />
+            <TextField fx:id="EntradaTunel4" layoutX="4.0" layoutY="10.0" prefHeight="56.0" prefWidth="70.0" promptText="EntradaTunel4" />
+            <TextField fx:id="Tunel4" layoutX="74.0" layoutY="23.0" prefHeight="25.0" prefWidth="60.0" promptText="Tunel4" />
          </children>
       </Pane>
       <Pane layoutX="466.0" layoutY="53.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: #9D432C;">
@@ -84,12 +60,6 @@
             <TextField fx:id="HumanosZona3" layoutX="7.0" layoutY="7.0" prefHeight="56.0" prefWidth="92.0" promptText="HumanosZona3" />
          </children>
       </Pane>
-      <Pane layoutX="466.0" layoutY="276.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: #9D432C;">
-         <children>
-            <TextField fx:id="ZombisZona4" layoutX="114.0" layoutY="7.0" prefHeight="56.0" prefWidth="85.0" promptText="ZombisZona4" />
-            <TextField fx:id="HumanosZona4" layoutX="7.0" layoutY="7.0" prefHeight="56.0" prefWidth="92.0" promptText="HumanosZona4" />
-         </children>
-      </Pane>
       <Label layoutX="80.0" layoutY="14.0" prefHeight="28.0" prefWidth="101.0" text="REFUGIO">
          <font>
             <Font name="Arial Black" size="19.0" />
@@ -105,8 +75,39 @@
             <Font name="Arial Black" size="19.0" />
          </font>
       </Label>
-      <Button fx:id="Pausar" layoutX="471.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3B83BD;" text="PAUSAR" textFill="WHITE" />
-      <Button fx:id="Jugar" layoutX="365.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3B83BD;" text="JUGAR" textFill="WHITE" />
-      <Button fx:id="Terminar" layoutX="577.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3B83BD;" text="TERMINAR" textFill="WHITE" />
+      <Button fx:id="botonPausar" layoutX="471.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3B83BD;" text="PAUSAR" textFill="WHITE" />
+      <Button fx:id="botonJugar" layoutX="365.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3B83BD;" text="JUGAR" textFill="WHITE" />
+      <Button fx:id="botonTerminar" layoutX="577.0" layoutY="361.0" mnemonicParsing="false" onAction="#onBotonTerminarClick" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3B83BD;" text="TERMINAR" textFill="WHITE" />
+      <Pane layoutX="27.0" layoutY="156.0" prefHeight="87.0" prefWidth="207.0" style="-fx-background-color: #C6784B;">
+         <children>
+            <TextField fx:id="ListaComedor" layoutX="10.0" layoutY="36.0" prefHeight="34.0" prefWidth="187.0" promptText="ListaComedor" />
+            <Label layoutX="72.0" layoutY="1.0" prefHeight="25.0" prefWidth="63.0" text="Comedor" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="247.0" layoutY="201.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: FFDB58;">
+         <children>
+            <TextField fx:id="SalidaTunel3" layoutX="134.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="SalidaTunel3" />
+            <TextField fx:id="EntradaTunel3" layoutX="4.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="EntradaTunel3" />
+            <TextField fx:id="Tunel3" layoutX="74.0" layoutY="23.0" prefHeight="25.0" prefWidth="60.0" promptText="Tunel3" />
+         </children>
+      </Pane>
+      <Pane layoutX="247.0" layoutY="127.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: FFDB58;">
+         <children>
+            <TextField fx:id="SalidaTunel2" layoutX="134.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="SalidaTunel2" />
+            <TextField fx:id="EntradaTunel2" layoutX="4.0" layoutY="10.0" prefHeight="56.0" prefWidth="70.0" promptText="EntradaTunel2" />
+            <TextField fx:id="Tunel2" layoutX="74.0" layoutY="23.0" prefHeight="25.0" prefWidth="60.0" promptText="Tunel2" />
+         </children>
+      </Pane>
+      <Pane layoutX="247.0" layoutY="53.0" prefHeight="70.0" prefWidth="207.0" style="-fx-background-color: FFDB58;">
+         <children>
+            <TextField fx:id="SalidaTunel1" layoutX="134.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="SalidaTunel1" />
+            <TextField fx:id="EntradaTunel1" layoutX="4.0" layoutY="7.0" prefHeight="56.0" prefWidth="70.0" promptText="EntradaTunel1" />
+            <TextField fx:id="Tunel1" layoutX="74.0" layoutY="23.0" prefHeight="25.0" prefWidth="60.0" promptText="Tunel1" />
+         </children>
+      </Pane>
    </children>
-</Pane>
+</AnchorPane>
