@@ -45,15 +45,16 @@ public class Humano extends Thread {
                 tuneles[tunelacc].accederTunel(this, false); //false, porque volvemos del exterior
 
                 if (!marcado) {
-                    refugio.setComida(refugio.getComida() + 2);
+                    refugio.incrementarComida(this, 2);
                 }
-                int tiempo = (int) (2 + Math.random() * 2);
+                int tiempo = (int) (2000 + Math.random() * 2000);
                 refugio.accederZonaDescanso(this, tiempo);
-                refugio.accederComedor(this); // tratar de coger comida si hay y sino se espera a que haya
+                refugio.accederComedor(this, 1); // tratar de coger comida si hay y sino se espera a que haya
 
                 if (marcado) {
-                    int tiempo2 = (int) (3 + Math.random() * 2);
+                    int tiempo2 = (int) (3000 + Math.random() * 2000);
                     refugio.accederZonaDescanso(this, tiempo2);
+                    System.out.println("El humano " + id + " se ha recuperado.");
                     marcado = false; /* PREGUNTAR */
                 }
             }

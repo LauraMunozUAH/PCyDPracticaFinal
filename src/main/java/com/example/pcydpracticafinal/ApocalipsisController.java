@@ -72,14 +72,14 @@ public class ApocalipsisController extends javax.swing.JFrame{
     private Stage stage;
     private boolean partidapausa;
     public ApocalipsisController(){
-        Refugio refugio = new Refugio();
+        Refugio refugio = new Refugio(ListaComedor, ListaDescanso, ListaZonaComun);
         ZonaRiesgo zonaRiesgo = new ZonaRiesgo();
         zonaRiesgo.getSubAreas().getFirst().setTextField(HumanosZona1, ZombisZona1);
         zonaRiesgo.getSubAreas().get(1).setTextField(HumanosZona2, ZombisZona2);
         zonaRiesgo.getSubAreas().get(2).setTextField(HumanosZona3, ZombisZona3);
         zonaRiesgo.getSubAreas().get(3).setTextField(HumanosZona4, ZombisZona4);
 
-        //Tunel[] tuneles = { new Tunel(0), new Tunel(1), new Tunel(2), new Tunel(3) };
+        Tunel[] tuneles = { new Tunel(0), new Tunel(1), new Tunel(2), new Tunel(3) };
 
         int area =  (int) (1 + Math.random() * 3);
         Zombi pacienteCero = new Zombi("Z0000", zonaRiesgo, area);
@@ -87,8 +87,8 @@ public class ApocalipsisController extends javax.swing.JFrame{
 
         for (int i = 1; i <= 10000; i++) {
             String id = String.format("H%04d", i);
-            //Humano h = new Humano(id, refugio, zonaRiesgo, tuneles);
-            //h.start();
+            Humano h = new Humano(id, refugio, zonaRiesgo, tuneles);
+            h.start();
             try {
                 Thread.sleep(500 + (int) Math.random() *1500);
             } catch (InterruptedException e) {
