@@ -79,7 +79,8 @@ public class ApocalipsisController extends javax.swing.JFrame{
         zonaRiesgo.getSubAreas().get(2).setTextField(HumanosZona3, ZombisZona3);
         zonaRiesgo.getSubAreas().get(3).setTextField(HumanosZona4, ZombisZona4);
 
-        Tunel[] tuneles = { new Tunel(0), new Tunel(1), new Tunel(2), new Tunel(3) };
+        Tunel[] tuneles = { new Tunel(0, SalidaTunel1, EntradaTunel1, Tunel1), new Tunel(1, SalidaTunel2, EntradaTunel2, Tunel2),
+                new Tunel(2, SalidaTunel3, EntradaTunel3, Tunel3), new Tunel(3, SalidaTunel4, EntradaTunel4, Tunel4) };
 
         int area =  (int) (1 + Math.random() * 3);
         Zombi pacienteCero = new Zombi("Z0000", zonaRiesgo, area);
