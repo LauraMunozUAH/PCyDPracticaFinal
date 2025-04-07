@@ -1,7 +1,7 @@
 package com.example.pcydpracticafinal;
 
 import javax.swing.*;
-import java.awt.*;
+import javafx.scene.control.TextField;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,23 +10,23 @@ public class SubAreaInsegura {
     ListaThreads humanos, zombis;
     //private final List<Zombi> zombis = new ArrayList<>();
 
-    public void setTextField(JTextField TextHumanos, JTextField TextZombis) {
+    public void setTextField(TextField TextHumanos, TextField TextZombis) {
         humanos = new ListaThreads(TextHumanos);
         zombis = new ListaThreads(TextZombis);
     }
     public synchronized void entrarZonaRHumano(Humano humano) {
-        humanos.add(humano);
+        humanos.meter(humano);
     }
     public synchronized void salirZonaRHumano(Humano humano) {
-        humanos.remove(humano);
+        humanos.sacar(humano);
     }
     public synchronized void entrarZonaRZombi(Zombi zombi) {
-        zombis.add(zombi);
+        zombis.meter(zombi);
     }
     public synchronized void salirZonaRZombi(Zombi zombi) {
-        zombis.remove(zombi);
+        zombis.sacar(zombi);
     }
-    public List<Humano> getListaHumanos() {
+    public ListaThreads getListaHumanos() {
         return humanos;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.pcydpracticafinal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Zombi extends Thread {
@@ -20,8 +21,16 @@ public class Zombi extends Thread {
             while (true) {
                 SubAreaInsegura areaSeleccionada = zonasRiesgo.getSubAreas().get(area);
                 areaSeleccionada.entrarZonaRZombi(this);
-                List<Humano> humanos = areaSeleccionada.getListaHumanos();
-                if (humanos.size() != 0) {
+                ArrayList<Thread> threads = areaSeleccionada.getListaHumanos().getLista();
+                ArrayList<Humano> humanos = new ArrayList<>();
+
+                for (Thread t : threads) {
+                    if (t instanceof Humano) {
+                        humanos.add((Humano) t);
+                    }
+                }
+
+                if (!humanos.isEmpty()) {
                     int posicionAtacado = (int) (Math.random() * (humanos.size() - 1));
                     Humano humanoAtacado = humanos.get(posicionAtacado);
                     System.out.println("El zombi " + id + "ataca al humano " + humanoAtacado.getID() + "(número de muertes: " + muertes + ")");

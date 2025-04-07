@@ -1,21 +1,24 @@
 package com.example.pcydpracticafinal;
 
-import java.awt.*;
-import java.util.*;
-import javax.swing.JTextField;
 
+import javafx.scene.control.TextField;
+import java.util.*;
 /* La clase ListaThreads permite gestionar las listas de threads en los monitores,
 con métodos para meter y sacar threads en ella. Cada vez que una lista se modifica,
-se imprime su nuevo contenido en el JTextField que toma como parámetro el constructor. */
+se imprime su nuevo contenido en el TextField que toma como parámetro el constructor. */
 public class ListaThreads
 {
     ArrayList<Thread> lista;
-    JTextField tf;
+    TextField tf;
 
-    public ListaThreads(JTextField tf)
+    public ListaThreads(TextField tf)
     {
         lista=new ArrayList<Thread>();
         this.tf=tf;
+    }
+
+    public ArrayList<Thread> getLista() {
+        return lista;
     }
 
     public synchronized void meter(Thread t)

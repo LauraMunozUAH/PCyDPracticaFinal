@@ -9,7 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class ApocalipsisController {
+import javax.swing.*;
+
+public class ApocalipsisController extends javax.swing.JFrame{
 
     @FXML
     private ResourceBundle resources;
@@ -69,8 +71,31 @@ public class ApocalipsisController {
     private Button botonTerminar;
     private Stage stage;
     private boolean partidapausa;
+    public ApocalipsisController(){
+        Refugio refugio = new Refugio();
+        ZonaRiesgo zonaRiesgo = new ZonaRiesgo();
+        zonaRiesgo.getSubAreas().getFirst().setTextField(HumanosZona1, ZombisZona1);
+        zonaRiesgo.getSubAreas().get(1).setTextField(HumanosZona2, ZombisZona2);
+        zonaRiesgo.getSubAreas().get(2).setTextField(HumanosZona3, ZombisZona3);
+        zonaRiesgo.getSubAreas().get(3).setTextField(HumanosZona4, ZombisZona4);
 
+        //Tunel[] tuneles = { new Tunel(0), new Tunel(1), new Tunel(2), new Tunel(3) };
 
+        int area =  (int) (1 + Math.random() * 3);
+        Zombi pacienteCero = new Zombi("Z0000", zonaRiesgo, area);
+        pacienteCero.start();
+
+        for (int i = 1; i <= 10000; i++) {
+            String id = String.format("H%04d", i);
+            //Humano h = new Humano(id, refugio, zonaRiesgo, tuneles);
+            //h.start();
+            try {
+                Thread.sleep(500 + (int) Math.random() *1500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     @FXML
     void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -109,25 +134,11 @@ public class ApocalipsisController {
     }
 
     public static void main(String args[]) {
-        Refugio refugio = new Refugio();
-        ZonaRiesgo zonaRiesgo = new ZonaRiesgo();
-        zonaRiesgo.getSubAreas().get(0).setTextField(HumanosZona1, ZonaZombis1);
-        Tunel[] tuneles = { new Tunel(0), new Tunel(1), new Tunel(2), new Tunel(3) };
-
-        int area =  (int) (1 + Math.random() * 3);
-        Zombi pacienteCero = new Zombi("Z0000", zonaRiesgo, area);
-        pacienteCero.start();
-
-        for (int i = 1; i <= 10000; i++) {
-            String id = String.format("H%04d", i);
-            Humano h = new Humano(id, refugio, zonaRiesgo, tuneles);
-            h.start();
-            try {
-                Thread.sleep(500 + (int) Math.random() *1500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ApocalipsisController().setVisible(true);
             }
-        }
+        });
     }
 
     public void setStage(Stage s){
