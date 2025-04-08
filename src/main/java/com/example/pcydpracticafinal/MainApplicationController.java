@@ -7,11 +7,11 @@ import javafx.stage.Stage;
 
 public class MainApplicationController {
     @FXML
-    public void onNuevaPartidaParametrosBotonClick() {
+    public void onNuevaPartidaBotonClick() {
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("NuevaPartidaParametros.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Apocalipsis.fxml"));
         try {
-            Scene scene = new Scene(fxmlLoader.load(), 420, 340);
+            Scene scene = new Scene(fxmlLoader.load(), 700, 400);
             stage.setTitle("Bienvenido: ");
             stage.setScene(scene);
             ApocalipsisController p = fxmlLoader.getController();

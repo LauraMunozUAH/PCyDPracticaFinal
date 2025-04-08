@@ -9,7 +9,7 @@ se imprime su nuevo contenido en el TextField que toma como parámetro el constr
 public class ListaThreads
 {
     ArrayList<Thread> lista;
-    TextField tf;
+    TextField tf = new TextField();
 
     public ListaThreads(TextField tf)
     {
