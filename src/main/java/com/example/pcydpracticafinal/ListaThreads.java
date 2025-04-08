@@ -1,6 +1,7 @@
 package com.example.pcydpracticafinal;
 
 
+import javafx.application.Platform;
 import javafx.scene.control.TextField;
 import java.util.*;
 /* La clase ListaThreads permite gestionar las listas de threads en los monitores,
@@ -9,11 +10,11 @@ se imprime su nuevo contenido en el TextField que toma como parámetro el constr
 public class ListaThreads
 {
     ArrayList<Thread> lista;
-    TextField tf = new TextField();
+    TextField tf ;
 
     public ListaThreads(TextField tf)
     {
-        lista=new ArrayList<Thread>();
+        lista=new ArrayList<>();
         this.tf=tf;
     }
 
@@ -36,10 +37,13 @@ public class ListaThreads
     public void imprimir()
     {
         String contenido="";
-        for(int i=0; i<lista.size(); i++)
-        {
-            contenido=contenido+ "-V" + lista.get(i).getName()+" ";
+        for (Thread thread : lista) {
+            contenido = contenido + thread.getName() + " ";
+
         }
-        tf.setText(contenido);
+        String finalContenido = contenido;
+        Platform.runLater(() -> tf.setText(finalContenido));
+
+
     }
 }

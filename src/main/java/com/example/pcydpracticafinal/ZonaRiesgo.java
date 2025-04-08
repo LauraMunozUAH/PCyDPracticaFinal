@@ -21,7 +21,7 @@ public class ZonaRiesgo {
         String IDHumano = humano.getID();
 
         String IDZombi = "Z" + IDHumano.substring(1);
-        humano.interrupt();
+        humano.muerto=true;
         Zombi zombi = new Zombi(IDZombi, this, area);
         subAreas.get(area).entrarZonaRZombi(zombi);
     }

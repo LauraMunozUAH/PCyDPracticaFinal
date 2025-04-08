@@ -6,15 +6,15 @@ public class Humano extends Thread {
     private final ZonaRiesgo zonasRiesgo;
     private final Tunel[] tuneles;
     private boolean marcado = false;
+    boolean muerto= false;
 
     public Humano(String id, Refugio refugio, ZonaRiesgo zonasRiesgo, Tunel[] tuneles) {
+        super.setName(id);
         this.id = id;
         this.refugio = refugio;
         this.zonasRiesgo = zonasRiesgo;
         this.tuneles = tuneles;
     }
-
-
     public String getID() {
         return id;
     }
@@ -31,7 +31,7 @@ public class Humano extends Thread {
     @Override
     public void run() {
         try {
-            while (true){
+            while (!muerto){
                 refugio.accederZonaComun(this);
                 int tunelacc =  (int) (1 + Math.random() * 3);
                 tuneles[tunelacc].accederTunel(this,true); //true, porque salimos al exterior
@@ -40,22 +40,24 @@ public class Humano extends Thread {
                 System.out.println("El humano " + id + " está buscando comida en la zona de riesgo" + tunelacc);
                 int tiempoZR = (int) (3000 + Math.random() * 2000);
                 sleep(tiempoZR);
+                if(!muerto){
 
-                zonasRiesgo.getSubAreas().get(tunelacc).salirZonaRHumano(this);
-                tuneles[tunelacc].accederTunel(this, false); //false, porque volvemos del exterior
+                    zonasRiesgo.getSubAreas().get(tunelacc).salirZonaRHumano(this);
+                    tuneles[tunelacc].accederTunel(this, false); //false, porque volvemos del exterior
 
-                if (!marcado) {
-                    refugio.incrementarComida(this, 2);
-                }
-                int tiempo = (int) (2000 + Math.random() * 2000);
-                refugio.accederZonaDescanso(this, tiempo);
-                refugio.accederComedor(this, 1); // tratar de coger comida si hay y sino se espera a que haya
+                    if (!marcado) {
+                        refugio.incrementarComida(this, 2);
+                    }
+                    int tiempo = (int) (2000 + Math.random() * 2000);
+                    refugio.accederZonaDescanso(this, tiempo);
+                    refugio.accederComedor(this, 1); // tratar de coger comida si hay y sino se espera a que haya
 
-                if (marcado) {
-                    int tiempo2 = (int) (3000 + Math.random() * 2000);
-                    refugio.accederZonaDescanso(this, tiempo2);
-                    System.out.println("El humano " + id + " se ha recuperado.");
-                    marcado = false; /* PREGUNTAR */
+                    if (marcado) {
+                        int tiempo2 = (int) (3000 + Math.random() * 2000);
+                        refugio.accederZonaDescanso(this, tiempo2);
+                        System.out.println("El humano " + id + " se ha recuperado.");
+                        marcado = false;
+                    }
                 }
             }
         } catch (InterruptedException e) {

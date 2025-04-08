@@ -28,6 +28,7 @@ public class Tunel {
     public void accederTunel(Humano humano, boolean salida){ //TRUE --> Salida del refugio, FALSE --> Entrada al refugio
         if(salida){
             entrarListaEsperandoSalir(humano);
+            System.out.println("El humano "+ humano.getName()+ " está esperando para salir del túnel "+ id);
             try {
                 barreraSalida.await();
 
@@ -51,7 +52,7 @@ public class Tunel {
             while (salida && !HesperandoEntrar.getLista().isEmpty()){
                 puedeCruzar.await();
             }
-            semTunel.acquire();
+            //semTunel.acquire();
 
             if (salida) {
                 salirListaEsperandoSalir(humano);
@@ -66,7 +67,7 @@ public class Tunel {
             throw new RuntimeException(e);
         } finally {
             lock.unlock();
-            semTunel.release();
+            //semTunel.release();
         }
     }
 

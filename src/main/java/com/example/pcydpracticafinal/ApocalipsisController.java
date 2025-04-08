@@ -133,31 +133,32 @@ public class ApocalipsisController implements Initializable {
         assert botonJugar != null : "fx:id=\"Jugar\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert botonTerminar != null : "fx:id=\"Terminar\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
 
-        Refugio refugio = new Refugio(ListaComedor, ListaDescanso, ListaZonaComun);
-        ZonaRiesgo zonaRiesgo = new ZonaRiesgo();
-        zonaRiesgo.getSubAreas().getFirst().setTextField(HumanosZona1, ZombisZona1);
-        zonaRiesgo.getSubAreas().get(1).setTextField(HumanosZona2, ZombisZona2);
-        zonaRiesgo.getSubAreas().get(2).setTextField(HumanosZona3, ZombisZona3);
-        zonaRiesgo.getSubAreas().get(3).setTextField(HumanosZona4, ZombisZona4);
+        new Thread(()-> {
+            Refugio refugio = new Refugio(ListaComedor, ListaDescanso, ListaZonaComun);
+            ZonaRiesgo zonaRiesgo = new ZonaRiesgo();
+            zonaRiesgo.getSubAreas().getFirst().setTextField(HumanosZona1, ZombisZona1);
+            zonaRiesgo.getSubAreas().get(1).setTextField(HumanosZona2, ZombisZona2);
+            zonaRiesgo.getSubAreas().get(2).setTextField(HumanosZona3, ZombisZona3);
+            zonaRiesgo.getSubAreas().get(3).setTextField(HumanosZona4, ZombisZona4);
 
-        Tunel[] tuneles = { new Tunel(0, SalidaTunel1, EntradaTunel1, Tunel1), new Tunel(1, SalidaTunel2, EntradaTunel2, Tunel2),
-                new Tunel(2, SalidaTunel3, EntradaTunel3, Tunel3), new Tunel(3, SalidaTunel4, EntradaTunel4, Tunel4) };
+            Tunel[] tuneles = { new Tunel(0, SalidaTunel1, EntradaTunel1, Tunel1), new Tunel(1, SalidaTunel2, EntradaTunel2, Tunel2),
+                    new Tunel(2, SalidaTunel3, EntradaTunel3, Tunel3), new Tunel(3, SalidaTunel4, EntradaTunel4, Tunel4) };
 
-        int area =  (int) (1 + Math.random() * 3);
-        Zombi pacienteCero = new Zombi("Z0000", zonaRiesgo, area);
-        pacienteCero.start();
+            int area =  (int) (1 + Math.random() * 3);
+            Zombi pacienteCero = new Zombi("Z0000", zonaRiesgo, area);
+            pacienteCero.start();
 
-        for (int i = 1; i <= 10000; i++) {
-            String id = String.format("H%04d", i);
-            Humano h = new Humano(id, refugio, zonaRiesgo, tuneles);
-            h.start();
-            try {
-                Thread.sleep(500 + (int) Math.random() *1500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            for (int i = 1; i <= 10; i++) {
+                String id = String.format("H%04d", i);
+                Humano h = new Humano(id, refugio, zonaRiesgo, tuneles);
+                h.start();
+                try {
+                    Thread.sleep(500 + (int) Math.random() * 1500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
-
+        }).start();
     }
 
     /***public static void main(String args[]){
@@ -201,7 +202,7 @@ public class ApocalipsisController implements Initializable {
         stage.close();
         //log.debug("Se ha apretado el botón cerrar.");
     }
-
+    /**
     @FXML
     public void onPausarButtonClick() {
         try {
@@ -244,7 +245,7 @@ public class ApocalipsisController implements Initializable {
             System.err.println("Error al pulsar botón reanudar.");
             e.printStackTrace();
         }
-    }
+    }**/
 
 
 }
