@@ -106,32 +106,32 @@ public class ApocalipsisController implements Initializable {
         botonJugar.setDisable(true);
         botonPausar.setDisable(true);
 
-        assert ListaDescanso != null : "fx:id=\"ListaDescanso\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert EntradaTunel1 != null : "fx:id=\"EntradaTunel1\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert EntradaTunel2 != null : "fx:id=\"EntradaTunel2\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert EntradaTunel3 != null : "fx:id=\"EntradaTunel3\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert EntradaTunel4 != null : "fx:id=\"EntradaTunel4\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert HumanosZona1 != null : "fx:id=\"HumanosZona1\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert HumanosZona2 != null : "fx:id=\"HumanosZona2\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert HumanosZona3 != null : "fx:id=\"HumanosZona3\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert HumanosZona4 != null : "fx:id=\"HumanosZona4\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert ListaComedor != null : "fx:id=\"ListaComedor\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert ListaDescanso != null : "fx:id=\"ListaDescanso\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert ListaZonaComun != null : "fx:id=\"ListaZonaComun\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert SalidaTunel1 != null : "fx:id=\"SalidaTunel1\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert EntradaTunel1 != null : "fx:id=\"EntradaTunel1\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert Tunel1 != null : "fx:id=\"Tunel1\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert SalidaTunel2 != null : "fx:id=\"SalidaTunel2\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert EntradaTunel2 != null : "fx:id=\"EntradaTunel2\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert Tunel2 != null : "fx:id=\"Tunel2\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert SalidaTunel3 != null : "fx:id=\"SalidaTunel3\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert EntradaTunel3 != null : "fx:id=\"EntradaTunel3\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert SalidaTunel4 != null : "fx:id=\"SalidaTunel4\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert Tunel1 != null : "fx:id=\"Tunel1\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert Tunel2 != null : "fx:id=\"Tunel2\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert Tunel3 != null : "fx:id=\"Tunel3\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert SalidaTunel4 != null : "fx:id=\"SalidaTunel31\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert EntradaTunel4 != null : "fx:id=\"EntradaTunel31\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert Tunel4 != null : "fx:id=\"Tunel31\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert Tunel4 != null : "fx:id=\"Tunel4\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert ZombisZona1 != null : "fx:id=\"ZombisZona1\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert HumanosZona1 != null : "fx:id=\"HumanosZona1\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert ZombisZona2 != null : "fx:id=\"ZombisZona2\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert HumanosZona2 != null : "fx:id=\"HumanosZona2\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert ZombisZona3 != null : "fx:id=\"ZombisZona3\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert HumanosZona3 != null : "fx:id=\"HumanosZona3\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert ZombisZona4 != null : "fx:id=\"ZombisZona4\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert HumanosZona4 != null : "fx:id=\"HumanosZona4\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert botonPausar != null : "fx:id=\"Pausar\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert botonJugar != null : "fx:id=\"Jugar\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert botonTerminar != null : "fx:id=\"Terminar\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert botonJugar != null : "fx:id=\"botonJugar\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert botonPausar != null : "fx:id=\"botonPausar\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert botonTerminar != null : "fx:id=\"botonTerminar\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
 
         new Thread(()-> {
             Refugio refugio = new Refugio(ListaComedor, ListaDescanso, ListaZonaComun);

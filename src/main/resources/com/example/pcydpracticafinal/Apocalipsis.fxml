@@ -37,7 +37,7 @@
       </Pane>
       <Pane layoutX="474.0" layoutY="467.0" prefHeight="111.0" prefWidth="338.0" style="-fx-background-color: FFDB58;">
          <children>
-            <TextField fx:id="SalidaTunel4" editable="false" layoutX="210.0" layoutY="19.0" prefHeight="74.0" prefWidth="120.0" promptText="EntradaTunel4" />
+            <TextField fx:id="EntradaTunel4" editable="false" layoutX="210.0" layoutY="19.0" prefHeight="74.0" prefWidth="120.0" promptText="EntradaTunel4" />
             <TextField fx:id="SalidaTunel4" editable="false" layoutX="7.0" layoutY="19.0" prefHeight="74.0" prefWidth="120.0" promptText="SalidaTunel4" />
             <TextField fx:id="Tunel4" editable="false" layoutX="127.0" layoutY="39.0" prefHeight="34.0" prefWidth="85.0" promptText="Tunel4" />
          </children>
