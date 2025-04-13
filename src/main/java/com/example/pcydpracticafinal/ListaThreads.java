@@ -39,10 +39,10 @@ public class ListaThreads
         String contenido="";
         for (Thread thread : lista) {
             contenido = contenido + thread.getName() + " ";
-
         }
         String finalContenido = contenido;
         Platform.runLater(() -> tf.setText(finalContenido));
+        //tf.setText(finalContenido);
 
 
     }

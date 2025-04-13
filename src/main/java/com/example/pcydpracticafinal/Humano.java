@@ -20,7 +20,7 @@ public class Humano extends Thread {
     }
 
 
-    public boolean atacado() { //Si devuelve true el humano se salva, si devuelve false se muere.
+    public synchronized boolean atacado() { //Si devuelve true el humano se salva, si devuelve false se muere.
         int probabilidad = (int) (1 + Math.random() * 2);
         if (probabilidad != 1) { // Se salva en 2/3 de los casos
             marcado = true;  // Ha sido atacado, pero ha sobrevivido
