@@ -50,4 +50,7 @@ public class Zombi extends Thread {
     public void setMuertes(){
         this.muertes+=1;
     }
+    public void setArea(int newarea){
+        this.area=newarea;
+    }
 }

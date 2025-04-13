@@ -26,7 +26,7 @@ public class ZonaRiesgo {
             humano.muerto=true;
             subAreas.get(area).salirZonaRHumano(humano);
             Zombi zombi = new Zombi(IDZombi, this, area);
-            subAreas.get(area).entrarZonaRZombi(zombi);
+            zombi.setArea(area);
             zombi.start();
         }
     }
