@@ -12,9 +12,10 @@ public class ApocalipsisApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(ApocalipsisApplication.class.getResource("Apocalipsis.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 1283, 698);
         stage.setTitle("Apocalipsis Zombi");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
 
     }

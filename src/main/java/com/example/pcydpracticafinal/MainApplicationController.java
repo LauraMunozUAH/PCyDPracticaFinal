@@ -11,12 +11,12 @@ public class MainApplicationController {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Apocalipsis.fxml"));
         try {
-            Scene scene = new Scene(fxmlLoader.load(), 700, 400);
+            Scene scene = new Scene(fxmlLoader.load(), 1283, 698);
             stage.setTitle("Bienvenido: ");
             stage.setScene(scene);
             ApocalipsisController p = fxmlLoader.getController();
             p.setStage(stage);
-            stage.setMaximized(true);
+            //stage.setMaximized(true);
             stage.setResizable(false);
             stage.show();
             //log.info("Inicio del arranque de la ventana de Nueva Partida");

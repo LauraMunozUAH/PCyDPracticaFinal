@@ -67,44 +67,16 @@ public class ApocalipsisController implements Initializable {
     @FXML
     private Button botonPausar;
     @FXML
-    private Button botonJugar;
-    @FXML
     private Button botonTerminar;
     private Stage stage;
-    private boolean partidapausa;
-    /**public ApocalipsisController(){
-        Refugio refugio = new Refugio(ListaComedor, ListaDescanso, ListaZonaComun);
-        ZonaRiesgo zonaRiesgo = new ZonaRiesgo();
-        zonaRiesgo.getSubAreas().getFirst().setTextField(HumanosZona1, ZombisZona1);
-        zonaRiesgo.getSubAreas().get(1).setTextField(HumanosZona2, ZombisZona2);
-        zonaRiesgo.getSubAreas().get(2).setTextField(HumanosZona3, ZombisZona3);
-        zonaRiesgo.getSubAreas().get(3).setTextField(HumanosZona4, ZombisZona4);
-
-        Tunel[] tuneles = { new Tunel(0, SalidaTunel1, EntradaTunel1, Tunel1), new Tunel(1, SalidaTunel2, EntradaTunel2, Tunel2),
-                new Tunel(2, SalidaTunel3, EntradaTunel3, Tunel3), new Tunel(3, SalidaTunel4, EntradaTunel4, Tunel4) };
-
-        int area =  (int) (1 + Math.random() * 3);
-        Zombi pacienteCero = new Zombi("Z0000", zonaRiesgo, area);
-        pacienteCero.start();
-
-        for (int i = 1; i <= 10; i++) {
-            String id = String.format("H%04d", i);
-            Humano h = new Humano(id, refugio, zonaRiesgo, tuneles);
-            h.start();
-            try {
-                Thread.sleep(500 + (int) Math.random() *1500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }**/
+    private boolean partidapausa = false;
+    
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //log.debug("Inicialización en ejecución del controlador de parámetros\n");
 
-        botonJugar.setDisable(true);
-        botonPausar.setDisable(true);
+        botonPausar.setDisable(false);
 
         assert EntradaTunel1 != null : "fx:id=\"EntradaTunel1\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert EntradaTunel2 != null : "fx:id=\"EntradaTunel2\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
@@ -129,7 +101,6 @@ public class ApocalipsisController implements Initializable {
         assert ZombisZona2 != null : "fx:id=\"ZombisZona2\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert ZombisZona3 != null : "fx:id=\"ZombisZona3\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert ZombisZona4 != null : "fx:id=\"ZombisZona4\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert botonJugar != null : "fx:id=\"botonJugar\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert botonPausar != null : "fx:id=\"botonPausar\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert botonTerminar != null : "fx:id=\"botonTerminar\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
 
@@ -161,38 +132,8 @@ public class ApocalipsisController implements Initializable {
         }).start();
     }
 
-    /***public static void main(String args[]){
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ApocalipsisController().setVisible(true);
-            }
-        });
-    }***/
-
     public void setStage(Stage s){
         this.stage = s;
-    }
-
-    @FXML
-    protected void onJugarButtonClick() {
-        try {
-            //log.debug("Ha comenzado la partida");
-            System.out.println("Hemos llegado al tablero");
-
-            partidapausa = false;
-            botonJugar.setDisable(true);
-            botonPausar.setDisable(false);
-
-
-        } catch (Exception e) {
-            // Manejo de la excepción: muestra un mensaje de error al usuario
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Se produjo un error al iniciar el juego");
-            alert.setContentText("Detalles del error: " + e.getMessage());
-            alert.showAndWait();
-        }
-
     }
 
 
