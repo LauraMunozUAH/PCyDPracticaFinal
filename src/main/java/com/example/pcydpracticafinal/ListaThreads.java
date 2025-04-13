@@ -21,6 +21,9 @@ public class ListaThreads
     public ArrayList<Thread> getLista() {
         return lista;
     }
+    public synchronized ArrayList<Thread> getCopiaLista(){
+        return new ArrayList<>(lista);
+    }
 
     public synchronized void meter(Thread t)
     {

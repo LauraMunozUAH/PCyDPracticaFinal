@@ -22,12 +22,12 @@ public class Zombi extends Thread {
             while (true) {
                 SubAreaInsegura areaSeleccionada = zonasRiesgo.getSubAreas().get(area);
                 areaSeleccionada.entrarZonaRZombi(this);
-                ArrayList<Thread> humanos = areaSeleccionada.getListaHumanos().getLista();
+                ArrayList<Thread> humanos = areaSeleccionada.getListaHumanos().getCopiaLista();
 
                 if (!humanos.isEmpty()) {
                     int posicionAtacado = (int) (Math.random() * (humanos.size() - 1));
                     Humano humanoAtacado = (Humano) humanos.get(posicionAtacado);
-                    System.out.println("El zombi " + id + "ataca al humano " + humanoAtacado.getID() + "(número de muertes: " + muertes + ")");
+                    System.out.println("El zombi " + id + " ataca al humano " + humanoAtacado.getName() + " (número de muertes: " + muertes + ")");
                     boolean sobrevive = humanoAtacado.atacado(); //Si devuelve true sobrevive, si devuelve false muere. Al ser llamado directamente desde zombi.
                     sleep((int) (500 + Math.random() * 1000));
 

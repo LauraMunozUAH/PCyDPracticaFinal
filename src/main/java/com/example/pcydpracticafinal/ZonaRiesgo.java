@@ -24,8 +24,10 @@ public class ZonaRiesgo {
 
             String IDZombi = "Z" + IDHumano.substring(1);
             humano.muerto=true;
+            subAreas.get(area).salirZonaRHumano(humano);
             Zombi zombi = new Zombi(IDZombi, this, area);
             subAreas.get(area).entrarZonaRZombi(zombi);
+            zombi.start();
         }
     }
 }
