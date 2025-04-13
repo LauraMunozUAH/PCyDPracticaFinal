@@ -53,4 +53,5 @@ public class Zombi extends Thread {
     public void setArea(int newarea){
         this.area=newarea;
     }
+
 }

@@ -87,7 +87,7 @@ public class ApocalipsisController implements Initializable {
         Zombi pacienteCero = new Zombi("Z0000", zonaRiesgo, area);
         pacienteCero.start();
 
-        for (int i = 1; i <= 10000; i++) {
+        for (int i = 1; i <= 10; i++) {
             String id = String.format("H%04d", i);
             Humano h = new Humano(id, refugio, zonaRiesgo, tuneles);
             h.start();
