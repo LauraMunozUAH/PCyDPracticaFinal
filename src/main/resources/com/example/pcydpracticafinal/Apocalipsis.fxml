@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #F6F2E6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pcydpracticafinal.ApocalipsisController">
+<AnchorPane prefHeight="698.0" prefWidth="1283.0" style="-fx-background-color: #F6F2E6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pcydpracticafinal.ApocalipsisController">
    <children>
       <Pane layoutX="27.0" layoutY="53.0" prefHeight="87.0" prefWidth="207.0" style="-fx-background-color: #C6784B;">
          <children>
@@ -77,7 +77,7 @@
       </Label>
       <Button fx:id="botonPausar" layoutX="471.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3B83BD;" text="PAUSAR" textFill="WHITE" />
       <Button fx:id="botonJugar" layoutX="365.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3B83BD;" text="JUGAR" textFill="WHITE" />
-      <Button fx:id="botonTerminar" layoutX="577.0" layoutY="361.0" mnemonicParsing="false" onAction="#onBotonTerminarClick" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3B83BD;" text="TERMINAR" textFill="WHITE" />
+      <Button fx:id="botonTerminar" layoutX="1182.0" layoutY="672.0" mnemonicParsing="false" onAction="#onBotonTerminarClick" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3B83BD;" text="TERMINAR" textFill="WHITE" />
       <Pane layoutX="27.0" layoutY="156.0" prefHeight="87.0" prefWidth="207.0" style="-fx-background-color: #C6784B;">
          <children>
             <TextField fx:id="ListaComedor" editable="false" layoutX="10.0" layoutY="36.0" prefHeight="34.0" prefWidth="187.0" promptText="ListaComedor" />
