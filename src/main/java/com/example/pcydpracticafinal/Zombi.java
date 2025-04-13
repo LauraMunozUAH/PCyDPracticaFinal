@@ -32,7 +32,7 @@ public class Zombi extends Thread {
                     sleep((int) (500 + Math.random() * 1000));
 
                     if (!sobrevive) {
-                        zonasRiesgo.convertirHaZ(humanoAtacado,area);
+                        zonasRiesgo.convertirHaZ(this,humanoAtacado,area);
                     }
 
                 }
@@ -45,5 +45,9 @@ public class Zombi extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setMuertes(){
+        this.muertes+=1;
     }
 }
