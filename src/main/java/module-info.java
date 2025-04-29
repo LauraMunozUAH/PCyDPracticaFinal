@@ -1,7 +1,7 @@
 module com.example.pcydpracticafinal {
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.web;
+    //requires javafx.web;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -11,7 +11,7 @@ module com.example.pcydpracticafinal {
     //requires eu.hansolo.tilesfx;
     //requires com.almasb.fxgl.all;
     requires java.desktop;
-    requires org.apache.logging.log4j;
+    //requires org.apache.logging.log4j;
 
     opens com.example.pcydpracticafinal to javafx.fxml;
     exports com.example.pcydpracticafinal;

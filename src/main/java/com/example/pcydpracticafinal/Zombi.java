@@ -25,14 +25,15 @@ public class Zombi extends Thread {
                 ArrayList<Thread> humanos = areaSeleccionada.getListaHumanos().getCopiaLista();
 
                 if (!humanos.isEmpty()) {
+
                     int posicionAtacado = (int) (Math.random() * (humanos.size() - 1));
                     Humano humanoAtacado = (Humano) humanos.get(posicionAtacado);
-                    System.out.println("El zombi " + id + " ataca al humano " + humanoAtacado.getName() + " (número de muertes: " + muertes + ")");
-                    boolean sobrevive = humanoAtacado.atacado(); //Si devuelve true sobrevive, si devuelve false muere. Al ser llamado directamente desde zombi.
-                    sleep((int) (500 + Math.random() * 1000));
-
-                    if (!sobrevive) {
-                        zonasRiesgo.convertirHaZ(this,humanoAtacado,area);
+                    if (!humanoAtacado.getEsAtacado()){
+                        System.out.println("El zombi " + id + " ataca al humano " + humanoAtacado.getName() + " (número de muertes: " + muertes + ")");
+                        humanoAtacado.interrupt(); //¿Dónde lo pongo? ¿Aquí o dos líneas más abajo?
+                        humanoAtacado.zombiAtaca(this); //Si devuelve true sobrevive, si devuelve false muere. Al ser llamado directamente desde zombi.
+                        sleep((int) (500 + Math.random() * 1000));
+                        humanoAtacado.setEsAtacado();
                     }
 
                 }
@@ -48,10 +49,7 @@ public class Zombi extends Thread {
     }
 
     public void setMuertes(){
-        this.muertes+=1;
-    }
-    public void setArea(int newarea){
-        this.area=newarea;
+        this.muertes += 1;
     }
 
 }
