@@ -1,6 +1,9 @@
 package com.example.pcydpracticafinal;
 
 import javafx.scene.control.TextField;
+
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -9,13 +12,20 @@ public class Refugio {
 
     private int comida = 0;
     ListaThreads Hcomedor, Hdescanso, Hzonacomun;
+    Tunel[] tuneles;
     private final Lock lockComida = new ReentrantLock();
     private final Condition hayComida = lockComida.newCondition();
+    private final CyclicBarrier tunel1 = new CyclicBarrier(3); // Para formar grupos de 3
+    private final CyclicBarrier tunel2 = new CyclicBarrier(3);
+    private final CyclicBarrier tunel3 = new CyclicBarrier(3);
+    private final CyclicBarrier tunel4 = new CyclicBarrier(3);
 
-    public Refugio (TextField TextComedor, TextField TextDescanso, TextField TextZcomun) {
+
+    public Refugio (TextField TextComedor, TextField TextDescanso, TextField TextZcomun, Tunel[] tuneles) {
         Hcomedor = new ListaThreads(TextComedor);
         Hdescanso = new ListaThreads(TextDescanso);
         Hzonacomun = new ListaThreads(TextZcomun);
+        this.tuneles = tuneles;
     }
 
     public void incrementarComida(Humano humano, int cantidad) {
@@ -100,6 +110,31 @@ public class Refugio {
     }
     private synchronized void salirZonaComunHumano(Humano humano) {
         Hzonacomun.sacar(humano);
+    }
+    public void accederTunel(int tunel, Humano humano){
+        try {
+            switch (tunel){
+                case (1):
+                    tunel1.await();
+                    System.out.println("Se ha formado un grupo de 3 humanos para salir al exterior por el tunel 1.");
+                    tuneles[tunel-1].accederTunel(humano, true);//true, porque salimos al exterior
+                case (2):
+                    tunel2.await();
+                    System.out.println("Se ha formado un grupo de 3 humanos para salir al exterior por el tunel 2.");
+                    tuneles[tunel-1].accederTunel(humano, true);
+                case (3):
+                    tunel3.await();
+                    System.out.println("Se ha formado un grupo de 3 humanos para salir al exterior por el tunel 3.");
+                    tuneles[tunel-1].accederTunel(humano, true);
+                case (4):
+                    tunel4.await();
+                    System.out.println("Se ha formado un grupo de 3 humanos para salir al exterior  por el tunel 4.");
+                    tuneles[tunel-1].accederTunel(humano, true);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+    }
+
     }
 
 }

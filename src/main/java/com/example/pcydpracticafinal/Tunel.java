@@ -11,8 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Tunel {
     private final int id;
-    private final Semaphore semTunel = new Semaphore(1); // Solo 1 humano en el túnel a la vez
-    private final CyclicBarrier barreraSalida = new CyclicBarrier(3); // Para formar grupos de 3
+    //private final Semaphore semTunel = new Semaphore(1); // Solo 1 humano en el túnel a la vez
     private final Lock lock = new ReentrantLock();
     private final Condition puedeCruzar = lock.newCondition();
 
@@ -29,15 +28,6 @@ public class Tunel {
         if(salida){
             entrarListaEsperandoSalir(humano);
             System.out.println("El humano "+ humano.getName()+ " está esperando para salir del túnel "+ id);
-            try {
-                barreraSalida.await();
-
-            } catch (BrokenBarrierException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println("Se ha formado un grupo de 3 humanos para salir al exterior.");
             atravesarTunel(humano, salida);
         } else {
             entrarListaEsperandoEntrar(humano);

@@ -44,7 +44,8 @@ public class Humano extends Thread {
             while (!muerto){
                 refugio.accederZonaComun(this);
                 int tunelacc =  (int) (1 + Math.random() * 3);
-                tuneles[tunelacc].accederTunel(this,true); //true, porque salimos al exterior
+                refugio.accederTunel(tunelacc, this);
+                //tuneles[tunelacc].accederTunel(this,true); //true, porque salimos al exterior
 
                 try {
                     zonasRiesgo.getSubAreas().get(tunelacc).entrarZonaRHumano(this);

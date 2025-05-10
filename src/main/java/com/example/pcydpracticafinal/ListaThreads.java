@@ -45,8 +45,5 @@ public class ListaThreads
         }
         String finalContenido = contenido;
         Platform.runLater(() -> tf.setText(finalContenido));
-        //tf.setText(finalContenido);
-
-
     }
 }
