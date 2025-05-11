@@ -63,10 +63,6 @@ public class ApocalipsisController implements Initializable {
     private TextField ZombisZona4;
     @FXML
     private TextField HumanosZona4;
-    @FXML
-    private Button botonPausar;
-    @FXML
-    private Button botonTerminar;
     private Stage stage;
     private boolean partidapausa = false;
     
@@ -74,8 +70,6 @@ public class ApocalipsisController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //log.debug("Inicialización en ejecución del controlador de parámetros\n");
-
-        botonPausar.setDisable(false);
 
         assert EntradaTunel1 != null : "fx:id=\"EntradaTunel1\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert EntradaTunel2 != null : "fx:id=\"EntradaTunel2\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
@@ -100,9 +94,6 @@ public class ApocalipsisController implements Initializable {
         assert ZombisZona2 != null : "fx:id=\"ZombisZona2\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert ZombisZona3 != null : "fx:id=\"ZombisZona3\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert ZombisZona4 != null : "fx:id=\"ZombisZona4\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert botonPausar != null : "fx:id=\"botonPausar\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-        assert botonTerminar != null : "fx:id=\"botonTerminar\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
-
         new Thread(()-> {
 
             Paso paso = new Paso();
@@ -138,15 +129,6 @@ public class ApocalipsisController implements Initializable {
     public void setStage(Stage s){
         this.stage = s;
     }
-
-
-
-    @FXML
-    public void onBotonTerminarClick(ActionEvent event) {
-        stage.close();
-        //log.debug("Se ha apretado el botón cerrar.");
-    }
-
 
     @FXML
     public void onInformacionBotonClick() {
@@ -212,6 +194,5 @@ public class ApocalipsisController implements Initializable {
             e.printStackTrace();
         }
     }**/
-
 
 }
