@@ -1,4 +1,4 @@
-package com.example.pcydpracticafinal;
+/***package com.example.pcydpracticafinal;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,4 +23,4 @@ public class ApocalipsisApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
-}
+} ***/

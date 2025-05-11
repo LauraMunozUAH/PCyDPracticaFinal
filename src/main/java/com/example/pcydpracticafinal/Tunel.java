@@ -79,4 +79,9 @@ public class Tunel {
     private synchronized void salirListaTunel(Humano humano) { // Salir de la lista de esperando para salir al exterior
         HEnTunel.sacar(humano);
     }
+
+    // Funciones utilizadas para el RMI
+    public int getCantHumanosTunel() {
+        return HesperandoEntrar.getLista().size() + HesperandoSalir.getLista().size() + HEnTunel.getLista().size();
+    }
 }

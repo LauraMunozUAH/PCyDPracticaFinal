@@ -137,4 +137,20 @@ public class Refugio {
 
     }
 
+
+
+    // Funciones utilizadas para el RMI
+
+    public int getCantHumanosRef() {
+        return Hcomedor.getLista().size() + Hdescanso.getLista().size() + Hzonacomun.getLista().size();
+    }
+
+    public int[] getCantHumanosTuneles() {
+        int[] humanosTuneles = new int[4];
+        for (int i = 0; i < 4; i++) {
+            Tunel tunel = tuneles[i];
+            humanosTuneles[i] = tunel.getCantHumanosTunel();
+        }
+        return humanosTuneles;
+    }
 }

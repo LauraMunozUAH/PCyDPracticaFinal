@@ -12,6 +12,7 @@ module com.example.pcydpracticafinal {
     //requires com.almasb.fxgl.all;
     requires java.desktop;
     //requires org.apache.logging.log4j;
+    requires java.rmi;
 
     opens com.example.pcydpracticafinal to javafx.fxml;
     exports com.example.pcydpracticafinal;

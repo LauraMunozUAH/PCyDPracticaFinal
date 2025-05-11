@@ -4,13 +4,12 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import javax.swing.*;
 
 public class ApocalipsisController implements Initializable {
 
@@ -144,6 +143,28 @@ public class ApocalipsisController implements Initializable {
         stage.close();
         //log.debug("Se ha apretado el botón cerrar.");
     }
+
+
+    @FXML
+    public void onInformacionBotonClick() {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Informacion.fxml"));
+        try {
+            Scene scene = new Scene(fxmlLoader.load(), 947, 674);
+            stage.setTitle("Apocalipsis Zombi - Remoto ");
+            stage.setScene(scene);
+            ClienteInfoController p = fxmlLoader.getController();
+            p.setStage(stage);
+            //stage.setMaximized(true);
+            stage.setResizable(false);
+            stage.show();
+            //log.info("Inicio del arranque de la ventana de Nueva Partida");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     /**
     @FXML
     public void onPausarButtonClick() {
