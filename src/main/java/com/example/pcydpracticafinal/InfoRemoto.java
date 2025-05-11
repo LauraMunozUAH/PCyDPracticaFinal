@@ -65,7 +65,7 @@ public class InfoRemoto extends UnicastRemoteObject implements InterfaceInfoRemo
         // 3. Tomar los 3 primeros o menos si hay menos zombis
         for (int i = 0; i < 3 && i < zombisTotales.size(); i++) {
             Zombi z = zombisTotales.get(i);
-            resultado.add(z.getName() + " - " + z.getMuertes() + " muertes");
+            resultado.add(z.getName() + ": " + z.getMuertes() + " muertes; ");
         }
 
         return resultado;
