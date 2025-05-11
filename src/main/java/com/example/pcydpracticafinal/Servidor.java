@@ -8,7 +8,7 @@ public class Servidor {
     public static void mainServidor(Refugio refugio, ZonaRiesgo zonaRiesgo, Paso paso) {
         try {
             InfoRemoto info = new InfoRemoto(refugio, zonaRiesgo, paso);
-            LocateRegistry.createRegistry(2000);
+            LocateRegistry.createRegistry(1099);
 
             Naming.rebind("rmi://localhost/InfoRemoto", info);
             System.out.println("Servidor RMI listo.");

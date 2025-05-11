@@ -1,9 +1,10 @@
 package com.example.pcydpracticafinal;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-public interface InterfaceInfoRemoto {
+public interface InterfaceInfoRemoto extends Remote {
     int getHumanosRefugio() throws RemoteException;
     int[] getHumanosTuneles() throws RemoteException;
     int[] getHumanosZonasRiesgo() throws RemoteException;

@@ -63,7 +63,7 @@ public class ClienteInfoController {
         ListahumanosZonasR = new TextField[] { HumanosZona1, HumanosZona2, HumanosZona3, HumanosZona4 };
         ListazombisZonasR = new TextField[] { ZombisZona1, ZombisZona2, ZombisZona3, ZombisZona4};
         try {
-            InterfaceInfoRemoto info = (InterfaceInfoRemoto) Naming.lookup("rmi://localhost/InfoRemoto");
+            info = (InterfaceInfoRemoto) Naming.lookup("rmi://localhost/InfoRemoto");
 
             Thread actualizador = new Thread(() -> {
                 while  (true) {

@@ -104,6 +104,7 @@ public class ApocalipsisController implements Initializable {
         assert botonTerminar != null : "fx:id=\"botonTerminar\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
 
         new Thread(()-> {
+
             Paso paso = new Paso();
             ZonaRiesgo zonaRiesgo = new ZonaRiesgo();
             zonaRiesgo.getSubAreas().getFirst().setTextField(HumanosZona1, ZombisZona1);
@@ -115,6 +116,7 @@ public class ApocalipsisController implements Initializable {
                     new Tunel(2, SalidaTunel3, EntradaTunel3, Tunel3), new Tunel(3, SalidaTunel4, EntradaTunel4, Tunel4) };
 
             Refugio refugio = new Refugio(ListaComedor, ListaDescanso, ListaZonaComun, tuneles);
+            Servidor.mainServidor(refugio, zonaRiesgo, paso);
 
             int area =  (int) (1 + Math.random() * 3);
             Zombi pacienteCero = new Zombi("Z0000", zonaRiesgo, area, paso);
@@ -130,8 +132,6 @@ public class ApocalipsisController implements Initializable {
                     e.printStackTrace();
                 }
             }
-
-            Servidor.mainServidor(refugio, zonaRiesgo, paso);
         }).start();
     }
 
