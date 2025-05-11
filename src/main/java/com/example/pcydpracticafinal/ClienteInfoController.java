@@ -9,11 +9,12 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 public class ClienteInfoController {
 
-    private InfoRemoto info;
+    private InterfaceInfoRemoto info;
     private Stage stage;
 
     @FXML
@@ -43,18 +44,26 @@ public class ClienteInfoController {
     @FXML
     private TextField ZombisZona1;
     @FXML
-    private AnchorPane ZombisZona2;
+    private TextField ZombisZona2;
     @FXML
     private TextField ZombisZona3;
     @FXML
     private TextField ZombisZona4;
     @FXML
     private Button botonPausar;
+    private TextField[] Listatuneles;
+    private TextField[] ListahumanosZonasR;
+    private TextField[] ListazombisZonasR;
+    private boolean pausado = false;
 
     @FXML
     public void initialize() {
+
+        Listatuneles = new TextField[] { ListaTunel1, ListaTunel2, ListaTunel3, ListaTunel4 };
+        ListahumanosZonasR = new TextField[] { HumanosZona1, HumanosZona2, HumanosZona3, HumanosZona4 };
+        ListazombisZonasR = new TextField[] { ZombisZona1, ZombisZona2, ZombisZona3, ZombisZona4};
         try {
-            InterfaceInfoRemoto info = (InterfaceInfoRemoto) Naming.lookup("rmi://localhost/InfoRemota");
+            InterfaceInfoRemoto info = (InterfaceInfoRemoto) Naming.lookup("rmi://localhost/InfoRemoto");
 
             Thread actualizador = new Thread(() -> {
                 while  (true) {
@@ -95,4 +104,42 @@ public class ClienteInfoController {
     public void setStage(Stage s){
         this.stage = s;
     }
+
+    private void actualizarVista() {
+        try {
+            ListaRefugio.setText(String.valueOf(info.getHumanosRefugio()));
+
+            int[] tuneles = info.getHumanosTuneles();
+            int[] humanoszonasR = info.getHumanosZonasRiesgo();
+            int[] zombiszonasR = info.getZombisZonasRiesgo();
+
+            for (int i = 0; i < 4; i++) {
+                Listatuneles[i].setText(String.valueOf(tuneles[i]));
+                ListahumanosZonasR[i].setText(String.valueOf(humanoszonasR[i]));
+                ListazombisZonasR[i].setText(String.valueOf(zombiszonasR[i]));
+            }
+
+            ZombisLetales.setText(String.join("\n", info.getZombisLetales()));
+
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public void onPausarReanudar() {
+        try {
+            if (pausado) {
+                info.reanudar();
+                botonPausar.setText("Detener ejecución");
+            } else {
+                info.pausar();
+                botonPausar.setText("Reanudar ejecución");
+            }
+            pausado = !pausado;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

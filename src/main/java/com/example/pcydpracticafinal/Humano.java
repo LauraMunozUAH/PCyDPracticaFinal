@@ -12,16 +12,18 @@ public class Humano extends Thread {
     private boolean marcado = false;
     boolean muerto= false;
     private boolean esAtacado = false;
+    private Paso paso;
 
     Lock cerrojo = new ReentrantLock();
     Condition cond = cerrojo.newCondition();
 
-    public Humano(String id, Refugio refugio, ZonaRiesgo zonasRiesgo, Tunel[] tuneles) {
+    public Humano(String id, Refugio refugio, ZonaRiesgo zonasRiesgo, Tunel[] tuneles, Paso paso) {
         super.setName(id);
         this.id = id;
         this.refugio = refugio;
         this.zonasRiesgo = zonasRiesgo;
         this.tuneles = tuneles;
+        this.paso = paso;
     }
     public String getID() {
         return id;
@@ -42,6 +44,7 @@ public class Humano extends Thread {
     public void run() {
         try {
             while (!muerto){
+                paso.mirar();
                 refugio.accederZonaComun(this);
                 int tunelacc =  (int) (1 + Math.random() * 3);
                 refugio.accederTunel(tunelacc, this);
@@ -57,6 +60,7 @@ public class Humano extends Thread {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                paso.mirar();
                 cerrojo.lock();
                 try {
                     while(esAtacado) {
@@ -116,7 +120,7 @@ public class Humano extends Thread {
 
         String IDZombi = "Z" + id.substring(1);
         zonasRiesgo.getSubAreas().get(area).salirZonaRHumano(this);
-        Zombi zombi = new Zombi(IDZombi, zonasRiesgo, area);
+        Zombi zombi = new Zombi(IDZombi, zonasRiesgo, area, paso);
         zombi.start();
     }
 }

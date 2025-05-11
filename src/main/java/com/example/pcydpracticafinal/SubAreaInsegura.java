@@ -29,4 +29,5 @@ public class SubAreaInsegura {
     public ListaThreads getListaHumanos() {
         return humanos;
     }
+    public ListaThreads getListaZombis() { return zombis;}
 }

@@ -31,7 +31,7 @@ public class ZonaRiesgo {
         int[] zombisZonasR = new int[4];
         for (int i = 0; i < 4; i++) {
             SubAreaInsegura subArea = subAreas.get(i);
-            zombisZonasR[i] = subArea.getListaHumanos().getLista().size();
+            zombisZonasR[i] = subArea.getListaZombis().getLista().size();
         }
         return zombisZonasR;
     }

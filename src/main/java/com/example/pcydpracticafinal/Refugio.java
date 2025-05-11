@@ -118,18 +118,22 @@ public class Refugio {
                     tunel1.await();
                     System.out.println("Se ha formado un grupo de 3 humanos para salir al exterior por el tunel 1.");
                     tuneles[tunel-1].accederTunel(humano, true);//true, porque salimos al exterior
+                    break;
                 case (2):
                     tunel2.await();
                     System.out.println("Se ha formado un grupo de 3 humanos para salir al exterior por el tunel 2.");
                     tuneles[tunel-1].accederTunel(humano, true);
+                    break;
                 case (3):
                     tunel3.await();
                     System.out.println("Se ha formado un grupo de 3 humanos para salir al exterior por el tunel 3.");
                     tuneles[tunel-1].accederTunel(humano, true);
+                    break;
                 case (4):
                     tunel4.await();
                     System.out.println("Se ha formado un grupo de 3 humanos para salir al exterior  por el tunel 4.");
                     tuneles[tunel-1].accederTunel(humano, true);
+                    break;
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

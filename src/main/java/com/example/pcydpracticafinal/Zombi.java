@@ -8,18 +8,21 @@ public class Zombi extends Thread {
     private final ZonaRiesgo zonasRiesgo;
     private int muertes = 0;
     private int area;
+    private Paso paso;
 
-    public Zombi(String id, ZonaRiesgo zonasRiesgo, int area) {
+    public Zombi(String id, ZonaRiesgo zonasRiesgo, int area, Paso paso) {
         super.setName(id);
         this.id = id;
         this.zonasRiesgo = zonasRiesgo;
         this.area = area;
+        this.paso = paso;
     }
 
     @Override
     public void run() {
         try {
             while (true) {
+                paso.mirar();
                 SubAreaInsegura areaSeleccionada = zonasRiesgo.getSubAreas().get(area);
                 areaSeleccionada.entrarZonaRZombi(this);
                 ArrayList<Thread> humanos = areaSeleccionada.getListaHumanos().getCopiaLista();
@@ -37,6 +40,7 @@ public class Zombi extends Thread {
                     }
 
                 }
+                paso.mirar();
                 System.out.println("Zombi " + id + " está buscando comida.");
                 sleep((int) (2000 + Math.random() * 1000));
                 areaSeleccionada.salirZonaRZombi(this);
@@ -46,6 +50,10 @@ public class Zombi extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getMuertes() {
+        return muertes;
     }
 
     public void setMuertes(){
