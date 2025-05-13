@@ -42,7 +42,6 @@ public class Tunel {
             while (salida && !HesperandoEntrar.getLista().isEmpty()){
                 puedeCruzar.await();
             }
-            //semTunel.acquire();
 
             if (salida) {
                 salirListaEsperandoSalir(humano);
@@ -51,13 +50,15 @@ public class Tunel {
             }
             entrarListaTunel(humano);
             System.out.println("El humano " + humano.getID() + " está atravesando el túnel " + id);
-            humano.sleep(1000);
+            Thread.sleep(1000);
             salirListaTunel(humano);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
+            if (!salida) {
+                puedeCruzar.signalAll();
+            }
             lock.unlock();
-            //semTunel.release();
         }
     }
 
