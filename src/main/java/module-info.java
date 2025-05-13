@@ -11,7 +11,7 @@ module com.example.pcydpracticafinal {
     //requires eu.hansolo.tilesfx;
     //requires com.almasb.fxgl.all;
     requires java.desktop;
-    //requires org.apache.logging.log4j;
+    requires org.apache.logging.log4j;
     requires java.rmi;
 
     opens com.example.pcydpracticafinal to javafx.fxml;
