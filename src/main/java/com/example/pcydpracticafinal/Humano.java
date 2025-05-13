@@ -47,14 +47,17 @@ public class Humano extends Thread {
                 paso.mirar();
                 refugio.accederZonaComun(this);
                 int tunelacc =  (int) (1 + Math.random() * 3);
+                paso.mirar();
                 refugio.accederTunel(tunelacc, this);
                 //tuneles[tunelacc].accederTunel(this,true); //true, porque salimos al exterior
 
                 try {
+                    paso.mirar();
                     zonasRiesgo.getSubAreas().get(tunelacc).entrarZonaRHumano(this);
                     System.out.println("El humano " + id + " está buscando comida en la zona de riesgo" + tunelacc);
                     int tiempoZR = (int) (3000 + Math.random() * 2000);
                     sleep(tiempoZR);
+                    paso.mirar();
                 } catch (InterruptedException e) {
                     esAtacado = true;
                 } catch (Exception e) {
@@ -67,23 +70,32 @@ public class Humano extends Thread {
                         cond.await();
                     }
                     if (muerto) { //Si lo mata
+                        paso.mirar();
                         crearZombi(tunelacc);
+                        paso.mirar();
 
                     } else { //Si no lo mata
-
+                        paso.mirar();
                         zonasRiesgo.getSubAreas().get(tunelacc).salirZonaRHumano(this);
+                        paso.mirar();
                         tuneles[tunelacc].accederTunel(this, false); //false, porque volvemos del exterior
+                        paso.mirar();
 
                         if (!marcado) {
                             refugio.incrementarComida(this, 2);
                         }
                         int tiempo = (int) (2000 + Math.random() * 2000);
+                        paso.mirar();
                         refugio.accederZonaDescanso(this, tiempo);
+                        paso.mirar();
                         refugio.accederComedor(this, 1); // tratar de coger comida si hay y sino se espera a que haya
+                        paso.mirar();
 
                         if (marcado) {
+                            paso.mirar();
                             int tiempo2 = (int) (3000 + Math.random() * 2000);
                             refugio.accederZonaDescanso(this, tiempo2);
+                            paso.mirar();
                             System.out.println("El humano " + id + " se ha recuperado.");
                             marcado = false;
                         }

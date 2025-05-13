@@ -1,4 +1,4 @@
-package com.example.pcydpracticafinal;
+/***package com.example.pcydpracticafinal;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.RemoteException;
@@ -18,3 +18,4 @@ public class Servidor {
         }
     }
 }
+***/

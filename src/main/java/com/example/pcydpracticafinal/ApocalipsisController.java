@@ -1,5 +1,7 @@
 package com.example.pcydpracticafinal;
 import java.net.URL;
+import java.rmi.Naming;
+import java.rmi.registry.LocateRegistry;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -63,6 +65,8 @@ public class ApocalipsisController implements Initializable {
     private TextField ZombisZona4;
     @FXML
     private TextField HumanosZona4;
+    @FXML
+    private Button botonInformacion;
     private Stage stage;
     private boolean partidapausa = false;
     
@@ -94,6 +98,8 @@ public class ApocalipsisController implements Initializable {
         assert ZombisZona2 != null : "fx:id=\"ZombisZona2\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert ZombisZona3 != null : "fx:id=\"ZombisZona3\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert ZombisZona4 != null : "fx:id=\"ZombisZona4\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+        assert botonInformacion != null : "fx:id=\"botonInformacion\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
+
         new Thread(()-> {
 
             Paso paso = new Paso();
@@ -107,7 +113,18 @@ public class ApocalipsisController implements Initializable {
                     new Tunel(2, SalidaTunel3, EntradaTunel3, Tunel3), new Tunel(3, SalidaTunel4, EntradaTunel4, Tunel4) };
 
             Refugio refugio = new Refugio(ListaComedor, ListaDescanso, ListaZonaComun, tuneles);
-            Servidor.mainServidor(refugio, zonaRiesgo, paso);
+            //Servidor.mainServidor(refugio, zonaRiesgo, paso);
+
+            try {
+                InfoRemoto info = new InfoRemoto(refugio, zonaRiesgo, paso);
+                LocateRegistry.createRegistry(1099);
+
+                Naming.rebind("rmi://localhost/InfoRemoto", info);
+                System.out.println("Servidor RMI listo.");
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
 
             int area =  (int) (1 + Math.random() * 3);
             Zombi pacienteCero = new Zombi("Z0000", zonaRiesgo, area, paso);
@@ -132,6 +149,7 @@ public class ApocalipsisController implements Initializable {
 
     @FXML
     public void onInformacionBotonClick() {
+
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Informacion.fxml"));
         try {
