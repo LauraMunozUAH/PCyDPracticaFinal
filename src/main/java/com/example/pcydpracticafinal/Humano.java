@@ -4,7 +4,9 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+
 public class Humano extends Thread {
+    ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
     private final String id;
     private final Refugio refugio;
     private final ZonaRiesgo zonasRiesgo;
@@ -46,15 +48,17 @@ public class Humano extends Thread {
             while (!muerto){
                 paso.mirar();
                 refugio.accederZonaComun(this);
+                logger.registrarEvento("El humano " + id + " accede a la zona común.");
                 int tunelacc =  (int) (1 + Math.random() * 3);
                 paso.mirar();
                 refugio.accederTunel(tunelacc, this);
+                logger.registrarEvento("El humano " + id + " entra al túnel " + tunelacc + ".");
                 //tuneles[tunelacc].accederTunel(this,true); //true, porque salimos al exterior
 
                 try {
                     paso.mirar();
                     zonasRiesgo.getSubAreas().get(tunelacc).entrarZonaRHumano(this);
-                    System.out.println("El humano " + id + " está buscando comida en la zona de riesgo" + tunelacc);
+                    logger.registrarEvento("El humano " + id + " está buscando comida en la zona de riesgo " + tunelacc + ".");
                     int tiempoZR = (int) (3000 + Math.random() * 2000);
                     sleep(tiempoZR);
                     paso.mirar();
@@ -71,11 +75,13 @@ public class Humano extends Thread {
                     }
                     if (muerto) { //Si lo mata
                         paso.mirar();
+                        logger.registrarEvento("El humano " + id + " ha muerto."); // dentro de zombiAtaca si muere
                         crearZombi(tunelacc);
                         paso.mirar();
 
                     } else { //Si no lo mata
                         paso.mirar();
+                        logger.registrarEvento("El humano " + id + " ha sido atacado pero ha sobrevivido."); // dentro de zombiAtaca si sobrevive
                         zonasRiesgo.getSubAreas().get(tunelacc).salirZonaRHumano(this);
                         paso.mirar();
                         tuneles[tunelacc].accederTunel(this, false); //false, porque volvemos del exterior
@@ -83,12 +89,15 @@ public class Humano extends Thread {
 
                         if (!marcado) {
                             refugio.incrementarComida(this, 2);
+                            logger.registrarEvento("El humano" + id + " ha dejado 2 unidades de comida en el refugio.");
                         }
                         int tiempo = (int) (2000 + Math.random() * 2000);
                         paso.mirar();
                         refugio.accederZonaDescanso(this, tiempo);
+                        logger.registrarEvento("El humano " + id + " entra en la zona de descanso.");
                         paso.mirar();
                         refugio.accederComedor(this, 1); // tratar de coger comida si hay y sino se espera a que haya
+                        logger.registrarEvento("El humano " + id + " entra al comedor.");
                         paso.mirar();
 
                         if (marcado) {
@@ -96,7 +105,7 @@ public class Humano extends Thread {
                             int tiempo2 = (int) (3000 + Math.random() * 2000);
                             refugio.accederZonaDescanso(this, tiempo2);
                             paso.mirar();
-                            System.out.println("El humano " + id + " se ha recuperado.");
+                            logger.registrarEvento("El humano " + id + " se ha recuperado de su estado marcado.");
                             marcado = false;
                         }
                     }
@@ -134,5 +143,6 @@ public class Humano extends Thread {
         zonasRiesgo.getSubAreas().get(area).salirZonaRHumano(this);
         Zombi zombi = new Zombi(IDZombi, zonasRiesgo, area, paso);
         zombi.start();
+        logger.registrarEvento("El humano " + id + " se transforma en zombi Z" + id.substring(1)); // dentro de crearZombi()
     }
 }

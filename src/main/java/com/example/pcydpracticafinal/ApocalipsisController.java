@@ -69,11 +69,12 @@ public class ApocalipsisController implements Initializable {
     private Button botonInformacion;
     private Stage stage;
     private boolean partidapausa = false;
+    private ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
     
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //log.debug("Inicialización en ejecución del controlador de parámetros\n");
+        logger.registrarEvento("Inicialización en ejecución del controlador de parámetros\n");
 
         assert EntradaTunel1 != null : "fx:id=\"EntradaTunel1\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
         assert EntradaTunel2 != null : "fx:id=\"EntradaTunel2\" was not injected: check your FXML file 'Apocalipsis.fxml'.";
@@ -113,14 +114,13 @@ public class ApocalipsisController implements Initializable {
                     new Tunel(2, SalidaTunel3, EntradaTunel3, Tunel3), new Tunel(3, SalidaTunel4, EntradaTunel4, Tunel4) };
 
             Refugio refugio = new Refugio(ListaComedor, ListaDescanso, ListaZonaComun, tuneles);
-            //Servidor.mainServidor(refugio, zonaRiesgo, paso);
 
             try {
                 InfoRemoto info = new InfoRemoto(refugio, zonaRiesgo, paso);
                 LocateRegistry.createRegistry(1099);
 
                 Naming.rebind("rmi://localhost/InfoRemoto", info);
-                System.out.println("Servidor RMI listo.");
+                logger.registrarEvento("Servidor RMI listo.");
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
                 e.printStackTrace();
@@ -149,7 +149,6 @@ public class ApocalipsisController implements Initializable {
 
     @FXML
     public void onInformacionBotonClick() {
-
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Informacion.fxml"));
         try {
@@ -161,56 +160,11 @@ public class ApocalipsisController implements Initializable {
             //stage.setMaximized(true);
             stage.setResizable(false);
             stage.show();
-            //log.info("Inicio del arranque de la ventana de Nueva Partida");
+            logger.registrarEvento("Inicio del arranque de la ventana de Nueva Partida\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-
-    /**
-    @FXML
-    public void onPausarButtonClick() {
-        try {
-            if (partidapausa){
-                reanudarpartida();
-            } else {
-                pausarpartida();
-            }
-
-        } catch (Exception e) {
-            System.err.println("Error al pulsar botón pausar/reanudar.");
-            //log.error("Error al pulsar botón pausar/reanudar.");
-            e.printStackTrace();
-        }
-    }
-
-    public void pausarpartida() {
-        try {
-            //log.debug("Partida pausada.");
-            partidapausa = true;
-            botonPausar.setText("Reanudar");
-            botonTerminar.setDisable(false);
-
-        } catch (Exception e) {
-            //log.error("Error al pulsar botón pausar.");
-            System.err.println("Error al pulsar botón pausar.");
-            e.printStackTrace();
-        }
-    }
-
-    public void reanudarpartida() {
-        try {
-            //log.debug("Partida reanudada.");
-            partidapausa = false;
-            botonPausar.setText("Pausar");
-            botonTerminar.setDisable(false);
-
-        } catch (Exception e) {
-            //log.error("Error al pulsar botón reanudar.");
-            System.err.println("Error al pulsar botón reanudar.");
-            e.printStackTrace();
-        }
-    }**/
 
 }

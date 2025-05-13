@@ -55,6 +55,8 @@ public class ClienteInfoController {
     private TextField[] ListahumanosZonasR;
     private TextField[] ListazombisZonasR;
     private boolean pausado = false;
+    private static final ApocalipsisLogs log = ApocalipsisLogs.getInstancia();
+
 
     @FXML
     public void initialize() {
@@ -64,6 +66,7 @@ public class ClienteInfoController {
         ListazombisZonasR = new TextField[] { ZombisZona1, ZombisZona2, ZombisZona3, ZombisZona4};
         try {
             info = (InterfaceInfoRemoto) Naming.lookup("rmi://localhost/InfoRemoto");
+            log.registrarEvento("Cliente conectado exitosamente al servidor RMI.");
 
             Thread actualizador = new Thread(() -> {
                 while  (true) {
@@ -77,7 +80,7 @@ public class ClienteInfoController {
             actualizador.start();
 
         }  catch (Exception e) {
-            System.out.println("Excepción : " + e.getMessage());
+            log.registrarEvento("Error al actualizar vista desde servidor: " + e.getMessage());
             e.printStackTrace();
         }
 
@@ -132,12 +135,15 @@ public class ClienteInfoController {
             if (pausado) {
                 info.reanudar();
                 botonPausar.setText("Detener ejecución");
+                log.registrarEvento("Cliente solicitó reanudar ejecución.");
             } else {
                 info.pausar();
                 botonPausar.setText("Reanudar ejecución");
+                log.registrarEvento("Cliente solicitó pausar ejecución.");
             }
             pausado = !pausado;
         } catch (Exception e) {
+            log.registrarEvento("Error al intentar pausar o reanudar: " + e.getMessage());
             e.printStackTrace();
         }
     }

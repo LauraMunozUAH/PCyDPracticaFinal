@@ -8,8 +8,9 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Refugio {
 
+public class Refugio {
+    ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
     private int comida = 0;
     ListaThreads Hcomedor, Hdescanso, Hzonacomun;
     Tunel[] tuneles;
@@ -34,6 +35,8 @@ public class Refugio {
             comida += cantidad;
             hayComida.signalAll();
             System.out.println("El humano " + humano.getID() + " ha dejado dos piezas de comida.");
+            logger.registrarEvento("El humano " + humano.getID() + " ha dejado " + cantidad + " unidades de comida. Total en refugio: " + comida);
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -42,11 +45,13 @@ public class Refugio {
     }
     public void accederComedor(Humano humano, int cantidad) {
         lockComida.lock();
+        logger.registrarEvento("El humano " + humano.getID() + " intenta acceder al comedor.");
         entrarComedorHumano(humano);
         try {
             while (comida == 0) {
                 hayComida.await();
                 System.out.println("El humano " + humano.getID() + " está esperando a que haya comida.");
+                logger.registrarEvento("El humano " + humano.getID() + " está esperando comida.");
             }
             comida -= cantidad;
 
@@ -56,8 +61,10 @@ public class Refugio {
             lockComida.unlock();
             try {
                 System.out.println("El humano " + humano.getID() + " está comiendo.");
+                logger.registrarEvento("El humano " + humano.getID() + " está comiendo. Queda comida: " + comida);
                 humano.sleep((int) (3000 + Math.random() * 2000));
                 System.out.println("El humano " + humano.getID() + " sale del comedor.");
+                logger.registrarEvento("El humano " + humano.getID() + " sale del comedor.");
                 salirComedorHumano(humano);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -77,6 +84,7 @@ public class Refugio {
         try {
             entrarDescansoHumano(humano);
             System.out.println("El humano " + humano.getID() + " está descansando.");
+            logger.registrarEvento("El humano " + humano.getID() + " entra a descansar por " + tiempo + " ms.");
             humano.sleep(tiempo);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -95,6 +103,7 @@ public class Refugio {
         try {
             entrarZonaComunHumano(humano);
             System.out.println("El humano " + humano.getID() + " está en la zona común.");
+            logger.registrarEvento("El humano " + humano.getID() + " entra a la zona común.");
             int tiempo = (int) (1000 + Math.random() * 1000);
             humano.sleep(tiempo);
         } catch (InterruptedException e) {
@@ -102,6 +111,7 @@ public class Refugio {
         } finally {
             salirZonaComunHumano(humano);
             System.out.println("El humano " + humano.getID() + " se dirige al túnel.");
+            logger.registrarEvento("El humano " + humano.getID() + " se dirige al túnel tras la zona común.");
         }
     }
 
