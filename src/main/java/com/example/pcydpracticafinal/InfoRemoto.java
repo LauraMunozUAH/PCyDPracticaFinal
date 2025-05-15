@@ -7,6 +7,7 @@ import java.util.List;
 
 public class InfoRemoto extends UnicastRemoteObject implements InterfaceInfoRemoto {
 
+    private final ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
     private final Refugio refugio;
     private final ZonaRiesgo zonaRiesgo;
     private boolean pausado = false;
@@ -20,26 +21,32 @@ public class InfoRemoto extends UnicastRemoteObject implements InterfaceInfoRemo
 
     @Override
     public int getHumanosRefugio() throws RemoteException {
-        return  refugio.getCantHumanosRef();
+        int numero = refugio.getCantHumanosRef();
+        logger.registrarEvento("Consulta de humanos en el refugio: " + numero);
+        return numero;
     }
 
     @Override
     public int[] getHumanosTuneles() throws RemoteException {
+        logger.registrarEvento("Consulta de humanos en los túneles.");
         return refugio.getCantHumanosTuneles();
     }
 
     @Override
     public int[] getHumanosZonasRiesgo() throws RemoteException {
+        logger.registrarEvento("Consulta de humanos en zonas de riesgo.");
         return zonaRiesgo.getHumanosZonasR();
     }
 
     @Override
     public int[] getZombisZonasRiesgo() throws RemoteException {
+        logger.registrarEvento("Consulta de zombis en zonas de riesgo.");
         return zonaRiesgo.getZombisZonasR();
     }
 
     @Override
     public List<String> getZombisLetales() throws RemoteException {
+        logger.registrarEvento("Consulta de zombis más letales.");
         List<Zombi> zombisTotales = new ArrayList<>();
         List<SubAreaInsegura> subAreas = zonaRiesgo.getSubAreas();
         for (int i = 0; i < 4; i++) {
@@ -75,6 +82,7 @@ public class InfoRemoto extends UnicastRemoteObject implements InterfaceInfoRemo
     public synchronized void pausar() throws RemoteException {
         pausado = true;
         paso.cerrar();
+        logger.registrarEvento("Simulación pausada.");
     }
 
     @Override
@@ -82,9 +90,7 @@ public class InfoRemoto extends UnicastRemoteObject implements InterfaceInfoRemo
         pausado = false;
         paso.abrir();
         notifyAll();
+        logger.registrarEvento("Simulación reanudada.");
     }
 
-    public synchronized boolean isPausado() {
-        return pausado;
-    }
 }

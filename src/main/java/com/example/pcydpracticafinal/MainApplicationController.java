@@ -6,9 +6,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainApplicationController {
+    private final ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
     @FXML
     public void onNuevaPartidaBotonClick() {
-        ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("Apocalipsis.fxml"));
         try {

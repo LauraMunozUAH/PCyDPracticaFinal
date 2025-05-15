@@ -69,7 +69,7 @@ public class ApocalipsisController implements Initializable {
     private Button botonInformacion;
     private Stage stage;
     private boolean partidapausa = false;
-    private ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
+    private final ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
     
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -1,0 +1,234 @@
+@startuml
+
+' === Controlador principal del servidor ===
+class ApocalipsisController {
+    - ResourceBundle resources
+    - URL location
+    - TextField ListaDescanso
+    - TextField ListaComedor
+    - TextField ListaZonaComun
+    - TextField[] Tuneles
+    - TextField[] ZonasHumanos
+    - TextField[] ZonasZombis
+    - Button botonInformacion
+    - Stage stage
+    - boolean partidapausa
+    - ApocalipsisLogs logger
+    + initialize(URL, ResourceBundle)
+    + setStage(Stage)
+    + onInformacionBotonClick()
+}
+
+' === Controlador del cliente ===
+class ClienteInfoController {
+    - InterfaceInfoRemoto info
+    - Stage stage
+    - TextField[] Listatuneles
+    - TextField[] ListahumanosZonasR
+    - TextField[] ListazombisZonasR
+    - TextField ListaRefugio
+    - TextField ZombisLetales
+    - Button botonPausar
+    - boolean pausado
+    - ApocalipsisLogs log
+    + initialize()
+    + setStage(Stage)
+    - actualizarVista()
+    + onPausarReanudar()
+}
+
+' === Logger ===
+class ApocalipsisLogs {
+    - static ApocalipsisLogs recursoCompartido
+    - BufferedWriter escribirArchivo
+    - static String nombreArchivo
+    - static DateTimeFormatter formatoFecha
+    + static getInstancia(): ApocalipsisLogs
+    + registrarEvento(String)
+}
+
+' === Clase que representa un Humano ===
+class Humano {
+    - String id
+    - Refugio refugio
+    - ZonaRiesgo zonasRiesgo
+    - Tunel[] tuneles
+    - boolean marcado
+    - boolean muerto
+    - boolean esAtacado
+    - Paso paso
+    - Lock cerrojo
+    - Condition cond
+    + Humano(String, Refugio, ZonaRiesgo, Tunel[], Paso)
+    + getID(): String
+    + zombiAtaca(Zombi)
+    + run()
+}
+
+' === Clase que representa un Zombi ===
+class Zombi {
+    - String nombre
+    - int muertes
+    + getName(): String
+    + getMuertes(): int
+}
+
+' === Clase InfoRemoto ===
+class InfoRemoto {
+    - ApocalipsisLogs logger
+    - Refugio refugio
+    - ZonaRiesgo zonaRiesgo
+    - boolean pausado
+    - Paso paso
+    + InfoRemoto(Refugio, ZonaRiesgo, Paso)
+    + getHumanosRefugio(): int
+    + getHumanosTuneles(): int[]
+    + getHumanosZonasRiesgo(): int[]
+    + getZombisZonasRiesgo(): int[]
+    + getZombisLetales(): List<String>
+    + pausar()
+    + reanudar()
+}
+
+' === Interfaz remota ===
+interface InterfaceInfoRemoto {
+    + getHumanosRefugio(): int
+    + getHumanosTuneles(): int[]
+    + getHumanosZonasRiesgo(): int[]
+    + getZombisZonasRiesgo(): int[]
+    + getZombisLetales(): List<String>
+    + pausar()
+    + reanudar()
+}
+
+' === Lista de Threads (monitores) ===
+class ListaThreads {
+    - ArrayList<Thread> lista
+    - TextField tf
+    + ListaThreads(TextField)
+    + getLista(): ArrayList<Thread>
+    + getCopiaLista(): ArrayList<Thread>
+    + meter(Thread)
+    + sacar(Thread)
+    + imprimir()
+}
+
+' === Clase principal de la aplicación ===
+class MainApplication {
+    - ApocalipsisLogs logger
+    + start(Stage)
+    + main(String[])
+}
+
+' === Controlador de la ventana inicial ===
+class MainApplicationController {
+    - ApocalipsisLogs logger
+    + onNuevaPartidaBotonClick()
+}
+
+' === Nueva clase Paso ===
+class Paso {
+    - boolean cerrado
+    - Lock cerrojo
+    - Condition parar
+    - ApocalipsisLogs logger
+    + mirar()
+    + abrir()
+    + cerrar()
+}
+
+' === Nueva clase Refugio ===
+class Refugio {
+    - int comida
+    - ListaThreads Hcomedor
+    - ListaThreads Hdescanso
+    - ListaThreads Hzonacomun
+    - Tunel[] tuneles
+    - Lock lockComida
+    - Condition hayComida
+    - CyclicBarrier tunel1
+    - CyclicBarrier tunel2
+    - CyclicBarrier tunel3
+    - CyclicBarrier tunel4
+    - ApocalipsisLogs logger
+    + incrementarComida(Humano, int)
+    + accederComedor(Humano, int)
+    + accederZonaDescanso(Humano, int)
+    + accederZonaComun(Humano)
+    + accederTunel(int, Humano)
+    + getCantHumanosRef(): int
+    + getCantHumanosTuneles(): int[]
+}
+
+' === Nueva clase SubAreaInsegura ===
+class SubAreaInsegura {
+    - ListaThreads humanos
+    - ListaThreads zombis
+    - ApocalipsisLogs logger
+    + setTextField(TextField, TextField)
+    + entrarZonaRHumano(Humano)
+    + salirZonaRHumano(Humano)
+    + entrarZonaRZombi(Zombi)
+    + salirZonaRZombi(Zombi)
+    + getListaHumanos(): ListaThreads
+    + getListaZombis(): ListaThreads
+}
+
+' === Nueva clase Tunel ===
+class Tunel {
+    - int id
+    - Lock lock
+    - Condition puedeCruzar
+    - ListaThreads HesperandoSalir
+    - ListaThreads HesperandoEntrar
+    - ListaThreads HEnTunel
+    - ApocalipsisLogs logger
+    + accederTunel(Humano, boolean)
+    + getCantHumanosTunel(): int
+}
+
+' === Nueva clase ZonaRiesgo ===
+class ZonaRiesgo {
+    - List<SubAreaInsegura> subAreas
+    - ApocalipsisLogs logger
+    + getSubAreas(): List<SubAreaInsegura>
+    + getHumanosZonasR(): int[]
+    + getZombisZonasR(): int[]
+}
+
+' === Relaciones ===
+ApocalipsisController --> ApocalipsisLogs : usa
+ClienteInfoController --> ApocalipsisLogs : usa
+ClienteInfoController --> InterfaceInfoRemoto : comunica
+Humano --> ApocalipsisLogs : usa
+Humano --> Refugio
+Humano --> ZonaRiesgo
+Humano --> Tunel
+Humano --> Paso
+InfoRemoto --> ApocalipsisLogs : usa
+InfoRemoto --> Refugio
+InfoRemoto --> ZonaRiesgo
+InfoRemoto --> Paso
+InfoRemoto ..|> InterfaceInfoRemoto : implementa
+MainApplication --> ApocalipsisLogs : usa
+MainApplicationController --> ApocalipsisLogs : usa
+ListaThreads --> Thread
+ListaThreads --> TextField
+
+Paso --> ApocalipsisLogs : usa
+Refugio --> ListaThreads
+Refugio --> Tunel
+Refugio --> ApocalipsisLogs : usa
+
+SubAreaInsegura --> ListaThreads
+SubAreaInsegura --> ApocalipsisLogs : usa
+Tunel --> ListaThreads
+Tunel --> ApocalipsisLogs : usa
+ZonaRiesgo --> SubAreaInsegura
+ZonaRiesgo --> ApocalipsisLogs : usa
+Zombi --> ApocalipsisLogs : usa
+Zombi --> Paso
+Zombi --> SubAreaInsegura
+Humano --> Zombi : zombiAtaca
+
+@enduml

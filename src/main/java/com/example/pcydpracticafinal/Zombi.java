@@ -5,7 +5,7 @@ import java.util.List;
 
 
 public class Zombi extends Thread {
-    ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
+    private final ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
     private final String id;
     private final ZonaRiesgo zonasRiesgo;
     private int muertes = 0;

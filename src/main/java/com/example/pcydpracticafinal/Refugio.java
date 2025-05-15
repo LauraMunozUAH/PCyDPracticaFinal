@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 
 public class Refugio {
-    ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
+    private final ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
     private int comida = 0;
     ListaThreads Hcomedor, Hdescanso, Hzonacomun;
     Tunel[] tuneles;
@@ -34,7 +34,6 @@ public class Refugio {
         try {
             comida += cantidad;
             hayComida.signalAll();
-            System.out.println("El humano " + humano.getID() + " ha dejado dos piezas de comida.");
             logger.registrarEvento("El humano " + humano.getID() + " ha dejado " + cantidad + " unidades de comida. Total en refugio: " + comida);
 
         } catch (Exception e) {
@@ -50,7 +49,6 @@ public class Refugio {
         try {
             while (comida == 0) {
                 hayComida.await();
-                System.out.println("El humano " + humano.getID() + " está esperando a que haya comida.");
                 logger.registrarEvento("El humano " + humano.getID() + " está esperando comida.");
             }
             comida -= cantidad;
@@ -60,10 +58,8 @@ public class Refugio {
         } finally {
             lockComida.unlock();
             try {
-                System.out.println("El humano " + humano.getID() + " está comiendo.");
                 logger.registrarEvento("El humano " + humano.getID() + " está comiendo. Queda comida: " + comida);
                 humano.sleep((int) (3000 + Math.random() * 2000));
-                System.out.println("El humano " + humano.getID() + " sale del comedor.");
                 logger.registrarEvento("El humano " + humano.getID() + " sale del comedor.");
                 salirComedorHumano(humano);
             } catch (InterruptedException e) {
@@ -83,7 +79,6 @@ public class Refugio {
     public void accederZonaDescanso(Humano humano, int tiempo) {
         try {
             entrarDescansoHumano(humano);
-            System.out.println("El humano " + humano.getID() + " está descansando.");
             logger.registrarEvento("El humano " + humano.getID() + " entra a descansar por " + tiempo + " ms.");
             humano.sleep(tiempo);
         } catch (InterruptedException e) {
@@ -102,7 +97,6 @@ public class Refugio {
     public void accederZonaComun(Humano humano) {
         try {
             entrarZonaComunHumano(humano);
-            System.out.println("El humano " + humano.getID() + " está en la zona común.");
             logger.registrarEvento("El humano " + humano.getID() + " entra a la zona común.");
             int tiempo = (int) (1000 + Math.random() * 1000);
             humano.sleep(tiempo);
@@ -110,7 +104,6 @@ public class Refugio {
             throw new RuntimeException(e);
         } finally {
             salirZonaComunHumano(humano);
-            System.out.println("El humano " + humano.getID() + " se dirige al túnel.");
             logger.registrarEvento("El humano " + humano.getID() + " se dirige al túnel tras la zona común.");
         }
     }
@@ -126,22 +119,22 @@ public class Refugio {
             switch (tunel){
                 case (1):
                     tunel1.await();
-                    System.out.println("Se ha formado un grupo de 3 humanos para salir al exterior por el tunel 1.");
+                    logger.registrarEvento("Se ha formado un grupo de 3 humanos para salir al exterior por el tunel 1.");
                     tuneles[tunel-1].accederTunel(humano, true);//true, porque salimos al exterior
                     break;
                 case (2):
                     tunel2.await();
-                    System.out.println("Se ha formado un grupo de 3 humanos para salir al exterior por el tunel 2.");
+                    logger.registrarEvento("Se ha formado un grupo de 3 humanos para salir al exterior por el tunel 2.");
                     tuneles[tunel-1].accederTunel(humano, true);
                     break;
                 case (3):
                     tunel3.await();
-                    System.out.println("Se ha formado un grupo de 3 humanos para salir al exterior por el tunel 3.");
+                    logger.registrarEvento("Se ha formado un grupo de 3 humanos para salir al exterior por el tunel 3.");
                     tuneles[tunel-1].accederTunel(humano, true);
                     break;
                 case (4):
                     tunel4.await();
-                    System.out.println("Se ha formado un grupo de 3 humanos para salir al exterior  por el tunel 4.");
+                    logger.registrarEvento("Se ha formado un grupo de 3 humanos para salir al exterior  por el tunel 4.");
                     tuneles[tunel-1].accederTunel(humano, true);
                     break;
             }

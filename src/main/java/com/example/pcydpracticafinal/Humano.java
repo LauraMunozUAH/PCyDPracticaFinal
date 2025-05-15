@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 
 public class Humano extends Thread {
-    ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
+    private final ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
     private final String id;
     private final Refugio refugio;
     private final ZonaRiesgo zonasRiesgo;

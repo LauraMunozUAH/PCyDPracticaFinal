@@ -10,6 +10,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Tunel {
+    private final ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
     private final int id;
     //private final Semaphore semTunel = new Semaphore(1); // Solo 1 humano en el túnel a la vez
     private final Lock lock = new ReentrantLock();
@@ -27,11 +28,11 @@ public class Tunel {
     public void accederTunel(Humano humano, boolean salida){ //TRUE --> Salida del refugio, FALSE --> Entrada al refugio
         if(salida){
             entrarListaEsperandoSalir(humano);
-            System.out.println("El humano "+ humano.getName()+ " está esperando para salir del túnel "+ id);
+            logger.registrarEvento("El humano "+ humano.getName()+ " está esperando para salir del túnel "+ id);
             atravesarTunel(humano, salida);
         } else {
             entrarListaEsperandoEntrar(humano);
-            System.out.println("El humano " + humano.getID() + " está en la cola para entrar.");
+            logger.registrarEvento("El humano " + humano.getID() + " está en la cola para entrar.");
             atravesarTunel(humano, salida);
         }
     }
@@ -49,7 +50,7 @@ public class Tunel {
                 salirListaEsperandoEntrar(humano);
             }
             entrarListaTunel(humano);
-            System.out.println("El humano " + humano.getID() + " está atravesando el túnel " + id);
+            logger.registrarEvento("El humano " + humano.getID() + " está atravesando el túnel " + id);
             Thread.sleep(1000);
             salirListaTunel(humano);
         } catch (InterruptedException e) {

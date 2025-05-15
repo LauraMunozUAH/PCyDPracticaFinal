@@ -7,8 +7,8 @@ import java.util.concurrent.locks.ReentrantLock;
 // La clase Paso define un cerrojo con un Condition para la variable booleana cerrado
 // que es comprobada por un proceso.
 // Si vale false(abierto) el proceso puede continuar. Si es true(cerrado) el proceso se detiene
-public class Paso
-{
+public class Paso {
+    private final ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
     private boolean cerrado=false;
     private Lock cerrojo = new ReentrantLock();
     private Condition parar = cerrojo.newCondition();

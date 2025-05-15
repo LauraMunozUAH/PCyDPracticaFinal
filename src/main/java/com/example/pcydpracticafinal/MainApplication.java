@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainApplication extends Application {
-    ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
+    private final ApocalipsisLogs logger = ApocalipsisLogs.getInstancia();
 
     @Override
     public void start(Stage stage) throws IOException {
